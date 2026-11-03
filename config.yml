@@ -1,0 +1,18 @@
+# fdroidserver configuration of the Tangelo OS app repository.
+# No secrets here: passwords come from the environment (see scripts/publish.sh),
+# the keystore lives outside this repository.
+repo_url: https://yzue1980.github.io/tangelo-apps/repo
+repo_name: Tangelo OS Apps
+repo_icon: icon.png
+repo_description: >-
+  Apps for Tangelo OS that are not in the official F-Droid repository.
+  Source and signing details: https://github.com/YZUe1980/tangelo-apps
+
+# scripts/fetch.py keeps only the newest version of each app; no archive.
+archive_older: 0
+
+repo_keyalias: tangelo-repo
+keystore: /keys/repo-keystore.p12
+keystorepass: {env: TANGELO_REPO_KEYSTORE_PASS}
+keypass: {env: TANGELO_REPO_KEYSTORE_PASS}
+keydname: CN=Tangelo OS App Repository, O=Tangelo OS

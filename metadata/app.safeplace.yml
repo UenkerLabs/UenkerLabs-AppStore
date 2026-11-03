@@ -1,0 +1,21 @@
+Categories:
+  - Science & Education
+License: Proprietary
+AuthorName: YZUe1980
+
+AutoName: SafePlace
+Name: SafePlace
+Summary: Risk overview for your location from open data
+Description: |-
+  SafePlace summarises risks for a chosen place from freely licensed public data
+  sources and explains how each value is reached.
+
+  This build is signed with the Tangelo OS app key. It cannot be updated from
+  Google Play and vice versa. Purchases of SafePlace Plus need Google Play and
+  do not work on Tangelo OS; the free features work fully.
+
+AntiFeatures:
+  NonFreeDep:
+    en-US: Contains the Google Play Billing library (only used for SafePlace Plus).
+
+AllowedAPKSigningKeys: 7ec9a2f1193dcbbd60e0836c4b92e7735f87ff70c95f6f6ac831c3c661724c81

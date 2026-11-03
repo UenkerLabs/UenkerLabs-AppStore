@@ -1,0 +1,3 @@
+SafePlace fasst Risiken für einen gewählten Ort aus frei lizenzierten öffentlichen Datenquellen zusammen und erklärt, wie jeder Wert zustande kommt.
+
+Diese Version ist mit dem Tangelo-OS-App-Schlüssel signiert. Sie lässt sich nicht über Google Play aktualisieren und umgekehrt. Käufe von SafePlace Plus brauchen Google Play und funktionieren unter Tangelo OS nicht; die kostenlosen Funktionen gehen vollständig.

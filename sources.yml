@@ -1,0 +1,15 @@
+# Where each app comes from and which signing certificate it must carry.
+# scripts/fetch.py refuses any APK whose package name or SHA-256 signer differs.
+#
+# github: newest regular (non-prerelease) release, asset matching `asset`.
+# local:  built elsewhere and signed with the Tangelo OS app key by
+#         scripts/add-local.sh.
+
+# Proton Mail and Proton Drive (signer dcc9439ec1a6c6a8d0203f3423ee42bcc8b970628e53cb73a0393f398dd5b853,
+# Proton Technologies AG) are not mirrored: their APKs (160 and 199 MB) exceed
+# GitHub's 100 MB file limit. Install them from Aurora Store instead.
+
+app.safeplace:
+  local: true
+  # Tangelo OS app key (CN=Tangelo OS Apps), separate from Google Play.
+  signer: 7ec9a2f1193dcbbd60e0836c4b92e7735f87ff70c95f6f6ac831c3c661724c81

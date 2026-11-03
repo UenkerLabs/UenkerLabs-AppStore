@@ -1,0 +1,8 @@
+/repo/
+/archive/
+/tmp/
+/.add-local.*
+/tmp*/
+*.p12
+*.jks
+secrets.env
