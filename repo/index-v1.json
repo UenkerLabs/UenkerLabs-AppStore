@@ -1,0 +1,16 @@
+{
+  "repo": {
+    "timestamp": 1793734277612,
+    "version": 30000,
+    "name": "Tangelo OS Apps",
+    "icon": "icon.png",
+    "address": "https://yzue1980.github.io/tangelo-apps/repo",
+    "description": "Apps for Tangelo OS that are not in the official F-Droid repository. Source and signing details: https://github.com/YZUe1980/tangelo-apps"
+  },
+  "requests": {
+    "install": [],
+    "uninstall": []
+  },
+  "apps": [],
+  "packages": {}
+}

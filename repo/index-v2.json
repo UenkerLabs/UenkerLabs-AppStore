@@ -1,0 +1,20 @@
+{
+  "repo": {
+    "name": {
+      "en-US": "Tangelo OS Apps"
+    },
+    "description": {
+      "en-US": "Apps for Tangelo OS that are not in the official F-Droid repository. Source and signing details: https://github.com/YZUe1980/tangelo-apps"
+    },
+    "icon": {
+      "en-US": {
+        "name": "/icons/icon.png",
+        "sha256": "7a17fe2e866272c8616ced3a48ba5a26d1ffe5ee6cfe54eabf1ee3f591adc99b",
+        "size": 61253
+      }
+    },
+    "address": "https://yzue1980.github.io/tangelo-apps/repo",
+    "timestamp": 1793734277612
+  },
+  "packages": {}
+}
