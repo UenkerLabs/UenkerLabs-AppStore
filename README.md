@@ -17,11 +17,7 @@ F-Droid only accepts the index if it is signed with the key behind this fingerpr
 
 ## Apps
 
-| App | Source | Signed by |
-| --- | --- | --- |
-| SafePlace | Built from its own source tree | Tangelo OS app key, SHA-256 `7ec9a2f1…724c81` |
-
-SafePlace from this repository is a separate installation from the Google Play version: the two are signed with different keys and cannot update each other. SafePlace Plus purchases go through Google Play and are not available here.
+No apps are published yet. The repository is enabled in Tangelo OS so that apps can be added without a system update.
 
 ### Not mirrored
 
@@ -32,7 +28,7 @@ Proton Mail and Proton Drive publish signed APKs on GitHub, but at 160 and 199 M
 ```bash
 # Needs Docker, Python 3 with PyYAML, Java and the Android SDK build tools (JAVA_HOME, ANDROID_HOME).
 scripts/fetch.py                                  # new upstream releases from sources.yml
-scripts/add-local.sh path/to/app-release-unsigned.apk
+scripts/add-local.sh path/to/app-release-unsigned.apk  # apps built and signed here
 scripts/publish.sh                                # signed index in repo/
 scripts/publish.sh --push                         # publish to GitHub Pages
 ```
@@ -41,7 +37,7 @@ scripts/publish.sh --push                         # publish to GitHub Pages
 - Only the newest version of each app is served.
 - The index is built with the official fdroidserver container, pinned by digest in `scripts/publish.sh`.
 - `gh-pages` holds only the current repository, without history, so old APKs do not pile up in Git.
-- The keys (`repo-keystore.p12`, `app-keystore.p12`) and their passwords (`secrets.env`) are kept outside this repository on the build machine (`KEYS_DIR`, default `~/.config/tangelo-apps-keys`). Losing the repository key means existing installations stop accepting new indexes; losing the app key means SafePlace can no longer be updated in place.
+- The keys (`repo-keystore.p12`, `app-keystore.p12`) and their passwords (`secrets.env`) are kept outside this repository on the build machine (`KEYS_DIR`, default `~/.config/tangelo-apps-keys`). Losing the repository key means existing installations stop accepting new indexes; losing the app key means apps signed with it can no longer be updated in place.
 
 ## License
 

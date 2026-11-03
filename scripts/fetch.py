@@ -27,7 +27,7 @@ import yaml
 
 root = Path(__file__).resolve().parents[1]
 repo = root / 'repo'
-sources = yaml.safe_load((root / 'sources.yml').read_text())
+sources = yaml.safe_load((root / 'sources.yml').read_text()) or {}
 
 
 def build_tool(name):

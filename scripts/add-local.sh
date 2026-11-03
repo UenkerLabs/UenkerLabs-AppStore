@@ -17,7 +17,7 @@ set -a; . "$keys/secrets.env"; set +a
 work=$(mktemp -d "$root/.add-local.XXXXXX")
 trap 'rm -rf -- "$work"' EXIT
 "$bt/zipalign" -f -p 4 "$apk" "$work/aligned.apk"
-"$bt/apksigner" sign --ks "$keys/app-keystore.p12" --ks-key-alias tangelo-safeplace \
+"$bt/apksigner" sign --ks "$keys/app-keystore.p12" --ks-key-alias tangelo-apps \
     --ks-pass env:TANGELO_APP_KEYSTORE_PASS --out "$work/signed.apk" "$work/aligned.apk"
 read -r package code < <("$bt/aapt2" dump badging "$work/signed.apk" |
     sed -n "1s/^package: name='\([^']*\)' versionCode='\([0-9]*\)'.*/\1 \2/p")
