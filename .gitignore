@@ -1,8 +1,15 @@
-/repo/
-/archive/
-/tmp/
-/.add-local.*
-/tmp*/
-*.p12
+# Local build output and secrets
+.gradle/
+build/
+**/build/
+*.apk
+*.aab
+*.keystore
 *.jks
-secrets.env
+*.p12
+*.env
+.env*
+!.env.example
+secrets*
+.DS_Store
+.idea/
