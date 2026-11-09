@@ -1,6 +1,6 @@
-# Contributing to YVZ80
+# Contributing to UenkerLabs App Store
 
-Thanks for considering a contribution. YVZ80 is an independent, community-facing open-source Android app initiative.
+Thanks for considering a contribution. UenkerLabs App Store is an independent, community-facing open-source Android app initiative.
 
 ## Ways to help
 
@@ -19,4 +19,4 @@ Keep contributions device-agnostic when possible. Do not add advertising, invasi
 
 ## Current phase
 
-No YVZ80 app releases have been announced. The public landing page and distribution architecture are being prepared.
+No UenkerLabs App Store app releases have been announced. The public landing page and distribution architecture are being prepared.

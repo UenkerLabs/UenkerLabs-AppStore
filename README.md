@@ -1,21 +1,21 @@
-# YVZ80 — Independent Android Apps
+# UenkerLabs App Store — Independent Android Apps
 
 **Good apps. No compromises.**
 
-YVZ80 is an independent, open-source initiative for Android applications of all kinds: useful everyday tools, productivity apps, creative experiments, and bigger ideas. It is **not** limited to widgets, Nothing phones, or a single manufacturer.
+UenkerLabs App Store is an independent, open-source initiative for Android applications of all kinds: useful everyday tools, productivity apps, creative experiments, and bigger ideas. It is **not** limited to widgets, Nothing phones, or a single manufacturer.
 
-**Website:** https://yzue1980.github.io/yvz80-appstore/  
-**Source:** https://github.com/YZUe1980/yvz80-appstore
+**GitHub Pages target:** https://yzue1980.github.io/UenkerLabs-AppStore/ (public delivery not independently verified after the repository rename)  
+**Source:** https://github.com/YZUe1980/UenkerLabs-AppStore
 
 ## Current status
 
-**Early stage · No YVZ80 Android apps released yet.** The website is live as a project introduction and future app catalog. A working F-Droid installation flow for new releases has **not** been verified.
+**Early stage · No UenkerLabs App Store Android apps released yet.** The static project website and future app catalog are committed. Its availability at the renamed GitHub Pages address must be checked. A working F-Droid installation flow for new releases has **not** been verified.
 
-The `gh-pages` branch still contains legacy F-Droid index files associated with a previous Tangelo OS setup. They have been retained deliberately to avoid silently breaking existing trust/signature chains. **Do not interpret the presence of those files as a current YVZ80 app release.**
+The `gh-pages` branch still contains legacy F-Droid index files associated with a previous Tangelo OS setup. They have been retained deliberately to avoid silently breaking existing trust/signature chains. **Do not interpret the presence of those files as a current UenkerLabs App Store app release.**
 
 ## What belongs here
 
-- The public-facing YVZ80 website and future app catalog.
+- The public-facing UenkerLabs App Store website and future app catalog.
 - Documentation for our shared development and distribution principles.
 - Later: an independently validated F-Droid repository with signed releases.
 

@@ -1,6 +1,6 @@
 # Security policy
 
-YVZ80 is an early-stage public project. No YVZ80 Android app is currently offered as a stable release.
+UenkerLabs App Store is an early-stage public project. No UenkerLabs App Store Android app is currently offered as a stable release.
 
 For non-sensitive problems, use GitHub Issues. **Do not post vulnerability details involving private keys, personal data, or exploit details in a public Issue.** Contact the repository maintainers through a private channel or GitHub's private vulnerability reporting feature if enabled.
 

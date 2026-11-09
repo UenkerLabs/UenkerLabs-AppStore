@@ -10,7 +10,7 @@ The store is a platform for **all kinds of Android apps**, not one particular ph
 
 - Main branch: public website source, documentation.
 - `gh-pages` branch: public website **plus** older `repo/` metadata previously published for Tangelo OS.
-- No newly approved YVZ80 APK in the catalog.
+- No newly approved UenkerLabs App Store APK in the catalog.
 
 ## Safety-critical migration
 
