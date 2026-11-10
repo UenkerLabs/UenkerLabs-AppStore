@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">UenkerLabs Wecker</string>
+    <string name="widget_next_name">Nächster Wecker</string>
+    <string name="widget_clock_name">Digitaluhr</string>
+    <string name="widget_quick5_name">Kurz-Wecker 5 Minuten</string>
+    <string name="widget_quick15_name">Kurz-Wecker 15 Minuten</string>
+    <string name="widget_manage_name">Weckerverwaltung</string>
+</resources>

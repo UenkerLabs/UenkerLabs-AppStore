@@ -1,0 +1,12 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:orientation="vertical" android:gravity="center"
+    android:padding="12dp" android:background="@drawable/widget_bg">
+    <TextClock android:id="@+id/widget_live_clock" android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:gravity="center"
+        android:format12Hour="hh:mm a" android:format24Hour="HH:mm"
+        android:textStyle="bold" android:textColor="#FFFFFF" android:textSize="32sp"/>
+    <TextView android:id="@+id/widget_action" android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:gravity="center" android:padding="6dp"
+        android:text="Wecker öffnen" android:textColor="#A6C7F4"/>
+</LinearLayout>
