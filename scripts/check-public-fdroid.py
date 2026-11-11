@@ -13,7 +13,24 @@ from pathlib import Path
 import re
 import subprocess
 import tempfile
-from urllib.request import Request, urlopen
+from urllib.request import HTTPRedirectHandler, Request, build_opener
+
+class RejectRedirects(HTTPRedirectHandler):
+    def redirect_request(self, req, fp, code, msg, headers, newurl):
+        raise RuntimeError(f"Unexpected HTTP redirect for {req.full_url}: {code} to {newurl}")
+
+HTTP = build_opener(RejectRedirects)
+
+def check_client_transport():
+    """F-Droid clients probe signed indices via HEAD before downloading."""
+    if LOCAL_ROOT is not None:
+        return
+    for relative in ("entry.jar", "index-v1.jar"):
+        url = BASE + "/" + relative
+        with HTTP.open(Request(url, method="HEAD", headers={"User-Agent": "F-Droid-Index-Transport-QA/1.0"}), timeout=20) as response:
+            if response.status != 200 or response.geturl() != url:
+                raise RuntimeError(f"F-Droid client HEAD failed for {url}: HTTP {response.status}, target {response.geturl()}")
+
 
 BASE = "https://uenkerlabs.github.io/UenkerLabs-AppStore/repo"
 EXPECTED_CERT_SHA256 = "1A25F39551B1615980705043AD003D9F3258A8E96E91539DDB0D89ABFCD3B0F8"
@@ -23,9 +40,9 @@ def fetch(relative):
     if LOCAL_ROOT is not None:
         return (LOCAL_ROOT / relative).read_bytes()
     url = BASE + "/" + relative
-    with urlopen(Request(url, headers={"User-Agent": "UenkerLabs-FDroid-Check/1.0"}), timeout=20) as response:
-        if response.status != 200:
-            raise RuntimeError(f"Expected HTTP 200 for {url}, got {response.status}")
+    with HTTP.open(Request(url, headers={"User-Agent": "UenkerLabs-FDroid-Check/1.0"}), timeout=20) as response:
+        if response.status != 200 or response.geturl() != url:
+            raise RuntimeError(f"F-Droid endpoint must return HTTP 200 without redirects: {url}, got {response.status} at {response.geturl()}")
         return response.read()
 
 def sha(data):
@@ -48,6 +65,7 @@ def check_signed_jar(name, blob, directory):
         raise RuntimeError(f"Unexpected signer fingerprint for {name}: {fp}")
 
 def main():
+    check_client_transport()
     entry_blob = fetch("entry.json")
     entry = json.loads(entry_blob)
     required = ("name", "sha256", "size", "numPackages")
@@ -73,6 +91,8 @@ def main():
     if len(icon_data) != icon_meta["size"] or sha(icon_data) != icon_meta["sha256"]:
         raise RuntimeError("F-Droid icon size or SHA-256 mismatch")
     v1 = json.loads(fetch("index-v1.json"))
+    if hashlib.sha256(bytes.fromhex(v1["repo"]["pubkey"])).hexdigest().upper() != EXPECTED_CERT_SHA256:
+        raise RuntimeError("Published F-Droid repository certificate does not match pinned fingerprint")
     if v1["repo"]["address"].rstrip("/") != BASE or index["repo"]["address"].rstrip("/") != BASE:
         raise RuntimeError("Repository URLs mismatch")
     with tempfile.TemporaryDirectory() as temp:
