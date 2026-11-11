@@ -1,6 +1,10 @@
 name: Manual Android QA build
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/manual-android-qa.yml'
     inputs:
       module:
         description: "Which Android app should be built?"
@@ -35,11 +39,11 @@ jobs:
         run: bash scripts/check-source.sh
       - name: Build debug APK without publishing
         working-directory: android
-        run: gradle :${{ inputs.module }}:assembleDebug --no-daemon --console=plain
+        run: gradle :${{ inputs.module || 'arcade' }}:assembleDebug --no-daemon --console=plain
       - name: Upload review-only APK
         uses: actions/upload-artifact@v4
         with:
-          name: "${{ inputs.module }}-debug-review"
-          path: "android/${{ inputs.module }}/build/outputs/apk/debug/*.apk"
+          name: "${{ inputs.module || 'arcade' }}-debug-review"
+          path: "android/${{ inputs.module || 'arcade' }}/build/outputs/apk/debug/*.apk"
           if-no-files-found: error
           retention-days: 3
