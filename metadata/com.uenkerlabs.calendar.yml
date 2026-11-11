@@ -6,8 +6,8 @@ Name: "UenkerLabs Kalender"
 Summary: "Monatsansicht mit farbigen Terminen"
 Description: |-
   Neue Beta mit Monatsansicht beim Start, farbigen Terminen, Wisch-Navigation, Tages-/Wochenansichten und Terminübersicht. Nutzt vorhandene Android-Kalender. Echte Gerätetests stehen noch aus.
-SourceCode: https://github.com/YZUe1980/UenkerLabs-AppStore/tree/main/android/calendar
-IssueTracker: https://github.com/YZUe1980/UenkerLabs-AppStore/issues
+SourceCode: https://github.com/UenkerLabs/UenkerLabs-AppStore/tree/main/android/calendar
+IssueTracker: https://github.com/UenkerLabs/UenkerLabs-AppStore/issues
 CurrentVersion: 0.2.0-dev
 CurrentVersionCode: 2
 UpdateCheckMode: None
