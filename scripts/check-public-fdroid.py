@@ -109,6 +109,23 @@ def main():
         data = fetch(icon["name"].lstrip("/"))
         if sha(data) != icon["sha256"] or len(data) != icon["size"]:
             raise ValueError("Invalid game cover icon: " + mod)
+    # Active metadata must not point to the former GitHub identity.
+    current_repo = "https://github.com/UenkerLabs/UenkerLabs-AppStore"
+    for appid, package in packages.items():
+        meta = package["metadata"]
+        if meta.get("issueTracker") != current_repo + "/issues":
+            raise ValueError("Stale issue tracker in v2: " + appid)
+        if not meta.get("sourceCode", "").startswith(current_repo + "/tree/main/android/"):
+            raise ValueError("Stale source repository in v2: " + appid)
+    for app in v1["apps"]:
+        appid = app["packageName"]
+        if app.get("issueTracker") != current_repo + "/issues":
+            raise ValueError("Stale issue tracker in v1: " + appid)
+        if not app.get("sourceCode", "").startswith(current_repo + "/tree/main/android/"):
+            raise ValueError("Stale source repository in v1: " + appid)
+    xml_index = fetch("index.xml").decode("utf-8")
+    if "github.com/YZUe1980" in xml_index or "yzue1980.github.io" in xml_index:
+        raise ValueError("Obsolete GitHub owner URL in legacy XML index")
     expected_app_signer = "d903bd3c7f9bb4fc9738b86982b9064ee9e493c47dc0c2f587b5c7828ea25d30"
     for appid, package in packages.items():
         for version in package.get("versions", {}).values():

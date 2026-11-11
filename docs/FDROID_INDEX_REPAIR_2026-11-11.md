@@ -1,4 +1,10 @@
-# F-Droid index format correction (2026-11-11)
+# Historischer F-Droid-Indexfehler (11.11.2026) – nicht aktueller Paketstatus
+
+**Historischer Nachweis:** Der folgende Bericht dokumentiert den anfänglichen Zustand, als der Katalog tatsächlich null Apps enthielt. **Aktuell sind fünf Beta-Apps veröffentlicht**; die kanonische URL lautet https://uenkerlabs.github.io/UenkerLabs-AppStore/repo . Nicht als aktuelle Betriebsanleitung verwenden.
+
+---
+
+# F-Droid index format correction (historical 2026-11-11)
 
 The previous signed v2 index entry was missing the mandatory `index.numPackages` field. The official F-Droid client v2 model requires this value and rejects documents without it in its unit tests. The existing repository has 0 packages, so the corrected value is 0.
 
