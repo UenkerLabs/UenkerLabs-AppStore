@@ -62,6 +62,26 @@ jobs:
             if ! grep -qi 'jar verified' "/tmp/$signed-verification.txt"; then exit 1; fi
             keytool -printcert -jarfile "site/repo/$signed.jar" | grep -i 'SHA256' | tr -d ': ' | grep -qi '1A25F39551B1615980705043AD003D9F3258A8E96E91539DDB0D89ABFCD3B0F8'
           done
+      - name: Review public website content and download links
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          root=Path('site')
+          page=(root/'index.html').read_text(encoding='utf-8')
+          details=(root/'repo/index.html').read_text(encoding='utf-8')
+          css=(root/'assets/style.css').read_text(encoding='utf-8')
+          assert '<html lang="de">' in page, 'Homepage locale must be German'
+          assert page.count('class="app-card"')==5, 'Must show five beta app cards'
+          assert 'Apps are on the way' not in page, 'Old empty catalog must be removed'
+          assert 'fonts.googleapis.com' not in css, 'Avoid third-party font requests'
+          assert 'UenkerLabs' in page and 'F-Droid' in page
+          for app in ('calendar','messages','phone','alarm','arcade'):
+              filename='UenkerLabs-'+app+'-beta-0.1.0.apk'
+              assert filename in page and filename in details, filename
+              assert (root/'repo'/filename).exists(), filename
+          print('PASS: German beta catalog, two public pages and five APK download links')
+          PY
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
       - name: Upload reviewed, static gh-pages content
@@ -73,3 +93,19 @@ jobs:
         uses: actions/deploy-pages@v4
       - name: Validate public HTTPS and signatures after deployment
         run: python3 scripts/check-public-fdroid.py
+      - name: Check public homepage and source landing after publication
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from urllib.request import Request,urlopen
+          pages={
+            'https://yzue1980.github.io/UenkerLabs-AppStore/?edition=20261111':'class="app-card"',
+            'https://yzue1980.github.io/UenkerLabs-AppStore/repo/?edition=20261111':'Eine Quelle.'
+          }
+          for url,marker in pages.items():
+              with urlopen(Request(url,headers={'User-Agent':'UenkerLabs-Site-QA/1.0','Cache-Control':'no-cache'}),timeout=25) as response:
+                  assert response.status==200, (url,response.status)
+                  html=response.read().decode('utf-8')
+              assert marker in html, (url,'Public site served outdated HTML')
+          print('PASS: Public homepage and F-Droid source landing on GitHub Pages')
+          PY

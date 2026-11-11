@@ -1,89 +1,140 @@
 <!doctype html>
-<html lang="en">
+<html lang="de">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#0b1020">
-  <meta name="description" content="UenkerLabs App Store is an independent, open-source home for thoughtful Android apps. Built in public, designed for people, and free to explore.">
-  <meta property="og:title" content="UenkerLabs App Store — Apps with purpose. Built in the open.">
-  <meta property="og:description" content="Independent Android apps, open development, and a growing app collection.">
+  <meta name="theme-color" content="#0a1020">
+  <meta name="description" content="UenkerLabs AppStore: fünf offen entwickelte Android-Beta-Apps. Kalender, Nachrichten, Telefon, Wecker und Offline-Spiele über eine eigene signierte F-Droid-Paketquelle testen und aktualisieren.">
   <meta property="og:type" content="website">
-  <meta property="og:site_name" content="UenkerLabs App Store">
-  <meta property="og:locale" content="en_US">
-  <link rel="canonical" href="https://yzue1980.github.io/UenkerLabs-AppStore/">
-  <meta name="robots" content="index,follow">
+  <meta property="og:title" content="UenkerLabs AppStore – Android-Apps gemeinsam weiterentwickeln">
+  <meta property="og:description" content="Fünf Android-Beta-Apps. Offener Quellcode, eigene F-Droid-Paketquelle und ehrliche Hinweise zum Entwicklungsstand.">
+  <meta property="og:site_name" content="UenkerLabs AppStore">
+  <meta property="og:locale" content="de_DE">
   <meta property="og:url" content="https://yzue1980.github.io/UenkerLabs-AppStore/">
-  <title>UenkerLabs App Store — Independent Android Apps</title>
+  <link rel="canonical" href="https://yzue1980.github.io/UenkerLabs-AppStore/">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="assets/style.css">
-  <script src="assets/main.js" defer></script>
+  <script defer src="assets/main.js"></script>
+  <title>UenkerLabs AppStore – Android-Apps in offener Entwicklung</title>
 </head>
-<body>
-  <a class="skip-link" href="#main">Skip to content</a>
-  <div class="ambient ambient-one" aria-hidden="true"></div>
-  <div class="ambient ambient-two" aria-hidden="true"></div>
+<body id="top">
+  <a class="skip-link" href="#main">Zum Inhalt springen</a>
   <header class="site-header">
-    <div class="container nav-wrap">
-      <a href="#top" class="brand" aria-label="UenkerLabs App Store home"><span class="brand-mark"><span></span><span></span><span></span><span></span></span><span class="store-wordmark">Uenker<span class="brand-eighty">Labs</span><small>APP STORE</small></span></a>
-      <nav aria-label="Main navigation" class="main-nav">
-        <a href="#about">About</a>
-        <a href="#apps">Apps</a>
-        <a href="#open-source">Open source</a>
+    <div class="container header-inner">
+      <a class="brand" href="#top" aria-label="UenkerLabs AppStore – Startseite">
+        <span class="brand-symbol" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+        <span class="brand-copy">Uenker<span>Labs</span><small>APPSTORE · ANDROID BETA</small></span>
+      </a>
+      <nav class="primary-nav" aria-label="Hauptnavigation">
+        <a href="#apps">Apps</a><a href="#installation">Installation</a><a href="#ueber-uns">Über das Projekt</a>
       </nav>
-      <a class="header-action" href="https://github.com/YZUe1980/UenkerLabs-AppStore" target="_blank" rel="noopener noreferrer">View on GitHub <span aria-hidden="true">↗</span></a>
+      <a class="nav-github" href="https://github.com/YZUe1980/UenkerLabs-AppStore" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a>
     </div>
   </header>
+
   <main id="main">
-    <section class="hero container" id="top" aria-labelledby="hero-heading">
+    <section class="hero container" aria-labelledby="hero-title">
       <div class="hero-copy">
-        <span class="eyebrow"><span class="live-dot"></span> INDEPENDENT BY DESIGN · OPEN BY DEFAULT</span>
-        <h1 id="hero-heading">Good apps.<br><span class="gradient-text">No compromises.</span></h1>
-        <p class="hero-lead">A home for independent Android apps — from everyday tools to ambitious ideas. Thoughtfully built, openly developed, and made to be useful.</p>
+        <p class="eyebrow"><span class="status-dot" aria-hidden="true"></span> UNABHÄNGIG ENTWICKELT · ÖFFENTLICHE BETA</p>
+        <h1 id="hero-title">Gute Software<br>entsteht durch <em>Ausprobieren.</em></h1>
+        <p class="hero-lead">Der UenkerLabs AppStore ist unsere eigene Android-Paketquelle. Hier veröffentlichen wir erste Versionen, sammeln Erfahrungen und verbessern Anwendungen Schritt für Schritt – offen und nachvollziehbar.</p>
         <div class="hero-actions">
-          <a class="button primary" href="#apps">Explore apps <span aria-hidden="true">↗</span></a>
-          <a class="button secondary" href="https://github.com/YZUe1980/UenkerLabs-AppStore" target="_blank" rel="noopener noreferrer">Explore the project <span aria-hidden="true">↗</span></a>
+          <a class="button button-primary" href="#apps">Die fünf Apps entdecken <span aria-hidden="true">↘</span></a>
+          <a class="button button-outline" href="#installation">Über F-Droid installieren <span aria-hidden="true">↗</span></a>
         </div>
-        <div class="hero-subnote"><span class="tiny-star">✳</span> Independent projects. Transparent releases. No empty promises.</div>
+        <div class="hero-metrics" aria-label="Entwicklungsstand">
+          <span><strong>05</strong><small>Beta-Apps</small></span>
+          <span><strong>0.1.0</strong><small>Erste Testversion</small></span>
+          <span><strong>GitHub</strong><small>Quellcode einsehbar</small></span>
+        </div>
       </div>
-      <div class="hero-art" aria-label="Abstract illustration of a future Android app collection" role="img">
-        <div class="art-halo"></div>
-        <div class="visual-orbit orbit-a"></div><div class="visual-orbit orbit-b"></div>
-        <div class="floating-icon icon-left"><span class="symbol">✦</span></div>
-        <div class="floating-icon icon-right"><span class="symbol">◈</span></div>
-        <div class="device">
-          <div class="device-top"><span class="status-lines">•••</span><span class="device-caption">UENKERLABS / COLLECTION</span><span>◌</span></div>
-          <div class="device-content"><div class="device-label">THE NEXT WAVE</div><div class="device-heading">Made<br>to matter<span class="device-period">.</span></div><div class="device-rule"></div><div class="app-grid">
-            <div class="app-tile violet"><span>✦</span></div><div class="app-tile aqua"><span>⌘</span></div><div class="app-tile peach"><span>◈</span></div><div class="app-tile slate"><span>◎</span></div>
-          </div><div class="device-caption foot">SMALL IDEAS · BIG POSSIBILITIES</div></div>
-          <div class="device-bottom"></div>
+      <div class="hero-visual" aria-label="Schematische Darstellung des UenkerLabs-App-Katalogs">
+        <div class="visual-glow" aria-hidden="true"></div>
+        <div class="float-label float-top"><span class="pulse"></span> BETA-KANAL AKTIV</div>
+        <div class="phone-preview">
+          <div class="phone-top"><span>9:41</span><span class="phone-status" aria-hidden="true">●●●</span></div>
+          <div class="phone-brand"><span class="phone-chip" aria-hidden="true">✦</span> UenkerLabs <span class="beta-label">BETA</span></div>
+          <div class="phone-heading">Deine Apps.<small>Ein Ort für neue Versionen.</small></div>
+          <div class="preview-list">
+            <div><span class="preview-icon i-calendar" aria-hidden="true">▦</span><span><strong>Kalender</strong><small>Termine im Blick</small></span><b aria-hidden="true">↗</b></div>
+            <div><span class="preview-icon i-messages" aria-hidden="true">▤</span><span><strong>Nachrichten</strong><small>SMS ausprobieren</small></span><b aria-hidden="true">↗</b></div>
+            <div><span class="preview-icon i-phone" aria-hidden="true">⌕</span><span><strong>Telefon</strong><small>Anrufübersicht</small></span><b aria-hidden="true">↗</b></div>
+            <div><span class="preview-icon i-alarm" aria-hidden="true">◷</span><span><strong>Wecker</strong><small>Alarm &amp; Widgets</small></span><b aria-hidden="true">↗</b></div>
+            <div><span class="preview-icon i-arcade" aria-hidden="true">✧</span><span><strong>Spiele</strong><small>5 Offline-Minispiele</small></span><b aria-hidden="true">↗</b></div>
+          </div>
+          <div class="phone-bottom" aria-hidden="true"></div>
         </div>
-        <div class="floating-tag tag-top"><span class="tag-dot"></span> BUILD IN PUBLIC</div>
-        <div class="floating-tag tag-bottom">ANDROID <span>↗</span></div>
+        <div class="float-label float-bottom">F-DROID <span aria-hidden="true">↗</span> SIGNIERTE UPDATES</div>
+        <p class="visual-caption">Illustration des Katalogs, kein Screenshot einer App.</p>
       </div>
     </section>
-    <section class="principles container" id="about" aria-labelledby="principles-heading">
-      <div class="section-intro"><span class="overline">THE IDEA</span><h2 id="principles-heading">Software should feel <em>different.</em></h2><p>We believe useful software starts with a simple question: does this make life better?</p></div>
-      <div class="feature-grid">
-        <article class="feature"><span class="feature-number">01 /</span><div class="feature-symbol">◇</div><h3>Useful by nature</h3><p>Apps for real needs, not artificial engagement. From practical utilities to entirely new experiences.</p></article>
-        <article class="feature"><span class="feature-number">02 /</span><div class="feature-symbol">⌁</div><h3>Built out in the open</h3><p>Open code, visible decisions, and honest documentation. Anyone can inspect the work or contribute.</p></article>
-        <article class="feature"><span class="feature-number">03 /</span><div class="feature-symbol">✳</div><h3>Made for everyone</h3><p>Not tied to one phone brand or one use case. We build for the wider Android community.</p></article>
-      </div>
-    </section>
-    <section class="catalog-section" id="apps" aria-labelledby="apps-heading">
+
+    <section class="value-band" id="ueber-uns" aria-labelledby="value-title">
       <div class="container">
-        <div class="catalog-heading"><div><span class="overline">THE COLLECTION</span><h2 id="apps-heading">Apps are on the way<span class="accent-period">.</span></h2><p>Our app catalog is being prepared. We will only list apps when real, verifiable releases are available.</p></div><span class="catalog-count"><span class="count-dot"></span> FIRST RELEASES IN PREPARATION</span></div>
-        <div class="empty-catalog">
-          <div class="empty-pattern" aria-hidden="true"><span>✦</span><span>◈</span><span>⌘</span><span>◎</span></div>
-          <div class="empty-copy"><span class="small-label">A BLANK CANVAS, FOR NOW</span><h3>Every great collection starts somewhere.</h3><p>Follow development on GitHub. Once the first Android apps are ready, you will find their details, source code, and installation information here.</p><a href="https://github.com/YZUe1980/UenkerLabs-AppStore" target="_blank" rel="noopener noreferrer" class="inline-link">Follow the project <span aria-hidden="true">↗</span></a></div>
+        <div class="section-head narrow"><span class="kicker">DIE IDEE HINTER UENKERLABS</span><h2 id="value-title">Klein anfangen. <span>Offen weiterentwickeln.</span></h2><p>UenkerLabs erprobt eigene Softwareideen in der Praxis. Statt eine fertige Produktwelt zu versprechen, zeigen wir, was bereits funktioniert, was noch fehlt und woran wir arbeiten.</p></div>
+        <div class="principle-grid">
+          <article><span class="principle-num">01 /</span><div class="principle-icon" aria-hidden="true">◇</div><h3>Alltag zuerst</h3><p>Kalender, Kommunikation, Wecker und Spiele – praktische Funktionen, die wir Schritt für Schritt ausbauen.</p></article>
+          <article><span class="principle-num">02 /</span><div class="principle-icon teal" aria-hidden="true">⌘</div><h3>Entwicklung nachvollziehen</h3><p>Der aktuelle Quellcode liegt auf GitHub. Fehler und Verbesserungsideen können dort als Issues festgehalten werden.</p></article>
+          <article><span class="principle-num">03 /</span><div class="principle-icon amber" aria-hidden="true">✳</div><h3>Updates statt Umwege</h3><p>Unsere eigene F-Droid-Paketquelle bündelt Beta-Versionen. Bei Updates bleibt die App-Signatur erhalten.</p></article>
         </div>
-        <p class="catalog-notice"><strong>Distribution status:</strong> A signed F-Droid repository index is committed, but no APKs are released yet. Public HTTP delivery and Android client installation have not been independently verified. <a href="https://yzue1980.github.io/UenkerLabs-AppStore/repo">Repository details</a>.</p>
       </div>
     </section>
-    <section class="opensource container" id="open-source">
-      <div class="opensource-graphic" aria-hidden="true"><div class="code-card"><div class="code-top"><span></span><span></span><span></span><strong>open-source / philosophy</strong></div><div class="code-lines"><div><i>01</i> <b>create</b> meaningfulApps();</div><div><i>02</i> <b>share</b> theSource();</div><div><i>03</i> <b>improve</b> together();</div><div><i>04</i> <span class="code-comment">// everyone is welcome</span></div></div></div></div>
-      <div class="opensource-copy"><span class="overline">OPEN DEVELOPMENT</span><h2>Better together.<br><span class="soft-text">Better in the open.</span></h2><p>UenkerLabs App Store is an open-source project with room to grow. Explore the source, report issues, share feedback, or join the conversation as new apps take shape.</p><a class="button secondary" href="https://github.com/YZUe1980/UenkerLabs-AppStore" target="_blank" rel="noopener noreferrer">Visit GitHub <span aria-hidden="true">↗</span></a></div>
+
+    <section class="catalog" id="apps" aria-labelledby="apps-title">
+      <div class="container">
+        <div class="section-head catalog-title"><div><span class="kicker">JETZT IM BETA-KATALOG</span><h2 id="apps-title">Fünf Apps. <span>Ein Anfang.</span></h2><p>Alle fünf APKs sind veröffentlicht und signiert. Die tatsächliche Nutzung auf unterschiedlichen Android-Geräten wird noch getestet.</p></div><span class="catalog-tag"><span class="status-dot" aria-hidden="true"></span> 5 BETA-APPS · V0.1.0</span></div>
+        <div class="app-cards">
+          <article class="app-card">
+            <div class="card-top"><span class="app-icon calendar-icon" aria-hidden="true">▦</span><span class="card-status">BETA</span></div>
+            <h3>Kalender</h3><p class="card-intro">Termine aus deinen bereits eingerichteten Android-Kalendern anzeigen und neue Einträge erstellen.</p>
+            <ul class="card-details"><li>Android-Kalenderanbindung</li><li>Kalenderberechtigung erforderlich</li></ul>
+            <div class="card-links"><a href="repo/UenkerLabs-calendar-beta-0.1.0.apk" download>APK laden <span aria-hidden="true">↓</span></a><a href="https://github.com/YZUe1980/UenkerLabs-AppStore/tree/main/android/calendar" target="_blank" rel="noopener noreferrer">Quellcode ↗</a></div>
+          </article>
+          <article class="app-card">
+            <div class="card-top"><span class="app-icon messages-icon" aria-hidden="true">▤</span><span class="card-status">BETA</span></div>
+            <h3>Nachrichten</h3><p class="card-intro">Eine einfache SMS-Ansicht mit lokaler Spam-Markierung und manueller Sperrliste.</p>
+            <ul class="card-details"><li>Benötigt Zugriff auf SMS</li><li>Kein MMS, RCS oder Standard-SMS-Ersatz</li></ul>
+            <div class="card-links"><a href="repo/UenkerLabs-messages-beta-0.1.0.apk" download>APK laden <span aria-hidden="true">↓</span></a><a href="https://github.com/YZUe1980/UenkerLabs-AppStore/tree/main/android/messages" target="_blank" rel="noopener noreferrer">Quellcode ↗</a></div>
+          </article>
+          <article class="app-card">
+            <div class="card-top"><span class="app-icon phone-icon" aria-hidden="true">⌕</span><span class="card-status">BETA</span></div>
+            <h3>Telefon</h3><p class="card-intro">Wählhilfe, Anrufliste und eine optionale lokale Prüfung eingehender Anrufe.</p>
+            <ul class="card-details"><li>Anruflisten-Zugriff erforderlich</li><li>Kein vollständiger Standard-Dialer</li></ul>
+            <div class="card-links"><a href="repo/UenkerLabs-phone-beta-0.1.0.apk" download>APK laden <span aria-hidden="true">↓</span></a><a href="https://github.com/YZUe1980/UenkerLabs-AppStore/tree/main/android/phone" target="_blank" rel="noopener noreferrer">Quellcode ↗</a></div>
+          </article>
+          <article class="app-card">
+            <div class="card-top"><span class="app-icon alarm-icon" aria-hidden="true">◷</span><span class="card-status">BETA</span></div>
+            <h3>Wecker</h3><p class="card-intro">Alarme, Schlummerfunktion und fünf Widgets für deinen Android-Startbildschirm.</p>
+            <ul class="card-details"><li>Benachrichtigungen und Alarmberechtigungen</li><li>Für wichtige Termine Systemwecker beibehalten</li></ul>
+            <div class="card-links"><a href="repo/UenkerLabs-alarm-beta-0.1.0.apk" download>APK laden <span aria-hidden="true">↓</span></a><a href="https://github.com/YZUe1980/UenkerLabs-AppStore/tree/main/android/alarm" target="_blank" rel="noopener noreferrer">Quellcode ↗</a></div>
+          </article>
+          <article class="app-card">
+            <div class="card-top"><span class="app-icon arcade-icon" aria-hidden="true">✧</span><span class="card-status">BETA</span></div>
+            <h3>Spiele</h3><p class="card-intro">Fünf kleine Offline-Spiele: Zahlensprung, Merkfeld, Reaktionslabor, Musterfolge und Schiebepuzzle.</p>
+            <ul class="card-details"><li>Ohne Internetberechtigung</li><li>Zum Ausprobieren besonders geeignet</li></ul>
+            <div class="card-links"><a href="repo/UenkerLabs-arcade-beta-0.1.0.apk" download>APK laden <span aria-hidden="true">↓</span></a><a href="https://github.com/YZUe1980/UenkerLabs-AppStore/tree/main/android/arcade" target="_blank" rel="noopener noreferrer">Quellcode ↗</a></div>
+          </article>
+          <div class="catalog-note"><span class="note-symbol" aria-hidden="true">i</span><div><strong>Beta heißt: mit Einschränkungen rechnen.</strong><p>Ein erfolgreicher Build und eine gültige Signatur ersetzen keinen Gerätetest. Telefon und Nachrichten ersetzen noch keine Standard-Apps. Für zuverlässige Weckzeiten den bisherigen Wecker parallel verwenden.</p></div></div>
+        </div>
+      </div>
     </section>
-    <section class="closing container"><span class="overline">A LITTLE DIFFERENT</span><h2>The next useful app<br>could start <span class="gradient-text">right here.</span></h2><a href="https://github.com/YZUe1980/UenkerLabs-AppStore/issues" target="_blank" rel="noopener noreferrer" class="button primary">Share an idea <span aria-hidden="true">↗</span></a></section>
+
+    <section class="install-section container" id="installation" aria-labelledby="install-title">
+      <div class="install-text"><span class="kicker">EINFACH AKTUALISIEREN</span><h2 id="install-title">Eine Paketquelle.<br><span>Neue Versionen über F-Droid.</span></h2><p>F-Droid kann unsere Apps aus einer zusätzlichen, signierten Paketquelle beziehen. Dort erscheinen auch spätere Updates, sobald wir neue Versionen veröffentlichen.</p>
+        <ol class="steps"><li><span>1</span><div>Öffne F-Droid und gehe zu den <strong>Paketquellen</strong>.</div></li><li><span>2</span><div>Füge die untenstehende <strong>Repository-Adresse</strong> hinzu.</div></li><li><span>3</span><div>Aktualisiere die Paketquellen und wähle eine der <strong>fünf Beta-Apps</strong>.</div></li></ol>
+        <p class="small-disclaimer">Die Menünamen können je nach F-Droid-Version abweichen. Das ist eine unabhängige Paketquelle, nicht der offizielle F-Droid-Hauptkatalog.</p>
+      </div>
+      <div class="install-panel"><div class="panel-kicker"><span class="status-dot" aria-hidden="true"></span> SIGNIERTES REPOSITORY</div><h3>UenkerLabs Beta</h3><p>Adresse kopieren und in F-Droid als zusätzliche Paketquelle einfügen.</p>
+        <div class="repo-url" id="repo-url">https://yzue1980.github.io/UenkerLabs-AppStore/repo</div>
+        <button type="button" id="copy-repo" class="button button-primary copy-button" data-copy="https://yzue1980.github.io/UenkerLabs-AppStore/repo">Adresse kopieren <span aria-hidden="true">⧉</span></button>
+        <p id="copy-feedback" class="copy-feedback" aria-live="polite"></p>
+        <a class="panel-link" href="https://yzue1980.github.io/UenkerLabs-AppStore/repo?fingerprint=1A25F39551B1615980705043AD003D9F3258A8E96E91539DDB0D89ABFCD3B0F8">Paketquelle mit Fingerabdruck öffnen ↗</a>
+        <details class="fingerprint"><summary>Repository-Fingerabdruck (SHA-256) anzeigen</summary><code>1A25F39551B1615980705043AD003D9F3258A8E96E91539DDB0D89ABFCD3B0F8</code></details>
+      </div>
+    </section>
+
+    <section class="transparency" id="transparenz" aria-labelledby="transparency-title"><div class="container transparency-inner"><div><span class="kicker">OFFEN UND NACHVOLLZIEHBAR</span><h2 id="transparency-title">Du kannst sehen, <span>woran wir arbeiten.</span></h2><p>Der Quellcode und die Entwicklungsschritte liegen öffentlich auf GitHub. Probleme lassen sich dort melden. Die Website selbst verwendet keine externe Schriftart, keine eigenen Analyse-Dienste und keine Werbetracker. Beim Abruf über GitHub Pages fallen dennoch Daten beim Hostinganbieter an.</p></div><div class="transparency-actions"><a class="button button-outline" href="https://github.com/YZUe1980/UenkerLabs-AppStore" target="_blank" rel="noopener noreferrer">Projekt auf GitHub ↗</a><a class="text-link" href="https://github.com/YZUe1980/UenkerLabs-AppStore/issues" target="_blank" rel="noopener noreferrer">Fehler oder Verbesserung melden ↗</a></div></div></section>
   </main>
-  <footer class="footer"><div class="container footer-inner"><a href="#top" class="brand"><span class="brand-mark small"><span></span><span></span><span></span><span></span></span><span class="store-wordmark">Uenker<span class="brand-eighty">Labs</span><small>APP STORE</small></span></a><span>Independent Android apps. Built in the open.</span><a href="https://github.com/YZUe1980/UenkerLabs-AppStore" target="_blank" rel="noopener noreferrer">GitHub ↗</a></div><div class="container footer-bottom"><span>© <span id="year">2026</span> UenkerLabs contributors</span><span>Made with curiosity, not hype.</span></div></footer>
-</body></html>
+  <footer class="footer"><div class="container footer-top"><a class="brand" href="#top"><span class="brand-symbol" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span class="brand-copy">Uenker<span>Labs</span><small>APPSTORE · ANDROID BETA</small></span></a><p>Unabhängige Android-Apps. In offener Entwicklung.</p><a href="https://github.com/YZUe1980/UenkerLabs-AppStore" target="_blank" rel="noopener noreferrer">GitHub ↗</a></div><div class="container footer-bottom"><span>© <span id="year">2026</span> UenkerLabs</span><span>Beta-Software · Stand: 11. November 2026 · <a href="repo/">F-Droid-Paketquelle</a></span></div></footer>
+</body>
+</html>

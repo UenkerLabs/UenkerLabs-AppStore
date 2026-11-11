@@ -1,43 +1,52 @@
 # UenkerLabs AppStore
 
-Independent, open-source Android app source collection and F-Droid distribution project.
+**Android-Apps in offener Entwicklung.** Eigener signierter F-Droid-Beta-Kanal für Installation, Tests, Verbesserungen und spätere Updates.
 
-- **Source:** https://github.com/YZUe1980/UenkerLabs-AppStore
-- **Website (target):** https://yzue1980.github.io/UenkerLabs-AppStore/
-- **Signed F-Droid beta source (five APKs):** https://yzue1980.github.io/UenkerLabs-AppStore/repo
-- **Repository certificate SHA-256:** `1A25F39551B1615980705043AD003D9F3258A8E96E91539DDB0D89ABFCD3B0F8`
+- **Website und App-Vorstellung:** https://yzue1980.github.io/UenkerLabs-AppStore/
+- **F-Droid-Paketquelle:** https://yzue1980.github.io/UenkerLabs-AppStore/repo
+- **Quellcode:** https://github.com/YZUe1980/UenkerLabs-AppStore
+- **Feedback:** https://github.com/YZUe1980/UenkerLabs-AppStore/issues
 
-## Verified status (2026-11-11)
+## Fünf veröffentlichte Beta-Apps (0.1.0-dev)
 
-The default `main` branch holds **source code**. Five release-variant beta APKs are signed and indexed in the separate `gh-pages` distribution branch:
-1. `calendar` — native calendar viewer/editor using existing Android calendars (Google, Infomaniak/kSync, Outlook through compatible sync integrations).
-2. `messages` — SMS inbox preview with local labels and manual blocklist; no MMS/RCS/default SMS role yet.
-3. `phone` — dial pad, call-log viewer, and optional local CallScreeningService; not a full default dialer.
-4. `alarm` — alarm scheduling, ringtone service and **five home-screen widgets**.
-5. `arcade` — **five original offline mini-games** with no network permission.
+| App | Aktueller Funktionsumfang | Einschränkungen |
+|---|---|---|
+| **Kalender** | Android-Kalendertermine anzeigen und erstellen | Nutzt vorhandene Kalender-Synchronisierung |
+| **Nachrichten** | SMS-Ansicht, lokale Spam-Markierung und Sperrliste | Noch kein vollständiger Standard-SMS-Client; kein MMS/RCS |
+| **Telefon** | Wählhilfe, Anrufliste, optionale lokale Anrufprüfung | Noch kein vollständiger Standard-Dialer |
+| **Wecker** | Alarme, Snooze und fünf Startbildschirm-Widgets | Als alleiniger Wecker für wichtige Termine noch nicht gerätegetestet |
+| **Spiele** | Fünf Offline-Minispiele | Beta-Testversion, kein Internetzugriff angefordert |
 
-The universal mail client, privacy browser and lawful driving assistant are design backlog, **not coded releases**.
+Alle fünf Android-Release-APKs sind mit **demselben dauerhaft vorgesehenen App-Signierschlüssel** signiert und im F-Droid-Repository gelistet. Der Repository-Signierschlüssel ist davon getrennt.
 
-The `gh-pages` branch contains five **beta APKs** signed with the separate UenkerLabs app signing certificate (SHA-256 `D903BD3C7F9BB4FC9738B86982B9064EE9E493C47DC0C2F587B5C7828EA25D30`). The official `fdroidserver` generated the v1/v2 indexes; the existing F-Droid repository signing identity was preserved. All five Android release builds, APK v2/v3 signatures, index JAR signatures and APK hashes were verified. Public delivery must pass GitHub Pages deployment checks; Android-client install and in-place update are **not yet tested**. These are early-access prototypes, not finished system-app replacements.
+**Wichtig:** Erfolgreicher Build, gültige Signaturen und erreichbare Indexdateien sind keine Bestätigung einer fehlerfreien Installation oder Funktion auf Android-Geräten. Der praktische Beta-Test und spätere Updates werden gesondert geprüft.
 
-## Quality and release
+## Paketquelle hinzufügen
 
-- Review original code, privacy permissions, accessibility and third-party license obligations.
-- `bash scripts/check-source.sh`: tracked-source audit and pure Java sliding-puzzle smoke test when JDK exists. Not a substitute for Android builds or tests.
-- Android builds require JDK 17, SDK 35, AGP 8.8.2, Gradle 8.10.2; see [android/README.md](android/README.md).
-- Do not sign or release an untested app. Never commit private keys, passwords or user data.
-- Private key backup custody must remain restricted and independently checked before each publication.
-- An existing prior repository certificate is not silently interchangeable with the current certificate.
+F-Droid öffnen → Paketquellen → Neue Paketquelle → diese Adresse einfügen:
 
-## Layout
+`https://yzue1980.github.io/UenkerLabs-AppStore/repo`
 
-- `android/` — native Android modules.
-- `scripts/` — optional local audit and smoke test.
-- `docs/ARCHITECTURE.md` — F-Droid signing and release checks.
-- `docs/ANDROID_REPLACEMENT_ROADMAP.md` — feature roadmap and migration risks.
-- `index.html`, `assets/`, `favicon.svg` — website.
-- `gh-pages` branch `repo/` — signed metadata and five beta APKs.
+Repository-Zertifikat, SHA-256:
+`1A25F39551B1615980705043AD003D9F3258A8E96E91539DDB0D89ABFCD3B0F8`
 
-## License
-Site source and repository documentation: Apache-2.0 (root [LICENSE](LICENSE)).
-App sources are original prototypes; verify and declare per-app licensing before distribution.
+Eine unabhängige Paketquelle, **nicht** der offizielle F-Droid-Hauptkatalog. Behalte für SMS, Telefon und wichtige Wecktermine vorerst die bisherigen Standard-Apps.
+
+## Nachvollziehbare Entwicklung
+
+- **`main`** – Android-Quellcode, Website, Werkzeuge und Prüfscripte.
+- **`gh-pages`** – öffentliche Website, signierte Beta-APKs und F-Droid-Indexdateien.
+- Repository-Metadaten beruhen auf `fdroidserver`; die aktuellen Texte sind in Deutsch und Englisch gepflegt.
+- `scripts/check-public-fdroid.py` kontrolliert öffentliche Dateien, Index-Hashes, Paketanzahl und Signaturen.
+- Neue Versionen benötigen eine erhöhte `versionCode` und denselben App-Signierschlüssel.
+- Keine privaten Schlüssel, Passwörter oder Nutzerdaten in GitHub-Repositories oder GitHub-Actions-Artefakten.
+
+Weitere technische Informationen: [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) und [docs/FDROID_BETA_UPDATE_PROCESS.md](docs/FDROID_BETA_UPDATE_PROCESS.md).
+
+## Weitere Ideen
+
+Weitere Anwendungen wie Mailclient oder Browser sind **nicht** Teil der aktuellen Beta-Veröffentlichung und werden nicht als vorhandene Apps beworben.
+
+## Lizenz
+
+Website und Repository-Dokumentation unter [Apache-2.0](LICENSE). App-Code ist in Entwicklung; Drittanbieter-Abhängigkeiten und rechtliche Anforderungen müssen pro Veröffentlichung gesondert überprüft werden.
