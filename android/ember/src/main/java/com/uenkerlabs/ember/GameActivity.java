@@ -2,6 +2,7 @@ package com.uenkerlabs.ember;
 
 import android.app.Activity;
 import android.graphics.Canvas;
+import android.graphics.Path;
 import android.graphics.Color;
 import com.uenkerlabs.gamekit.GameHost;
 import com.uenkerlabs.gamekit.FrameGame;
