@@ -1,22 +1,19 @@
-# Contributing to UenkerLabs App Store
+# Contributing to UenkerLabs AppStore
 
-Thanks for considering a contribution. UenkerLabs App Store is an independent, community-facing open-source Android app initiative.
+This repository contains early, open-source Android experiments and a separately signed **three-app beta catalog** (Calendar, Alarm and Games). Phone and Messages remain paused in source form; their public APKs were withdrawn. **None of the beta apps has a documented physical-device release acceptance.**
 
-## Ways to help
+## Welcome contributions
 
-- Suggest a genuinely useful Android app or feature through GitHub Issues.
-- Report accessibility, usability, performance, or compatibility bugs.
-- Propose improvements to the public site, docs, or future catalog.
-- Submit focused pull requests with a clear description and manual verification steps.
+- Report reproducible accessibility, usability, reliability or compatibility issues.
+- Suggest focused improvements to the Android modules, the website and the documentation.
+- Submit small pull requests with a clear change description and applicable manual verification notes.
 
-## Principles
+## Safety and workflow
 
-Keep contributions device-agnostic when possible. Do not add advertising, invasive tracking, unnecessary network calls, or undisclosed services. Discuss major architectural changes before implementation.
+Do not submit passwords, API tokens, personal records, screenshots containing private information, APK/repository signing keys or signing material.
 
-**Privacy:** never submit credentials, API tokens, private signing keys, personal files, user data, or screenshots containing private information. Review diffs before pushing.
+Keep the project free of advertising, invasive tracking and unnecessary network calls. Avoid new dependencies or architectural changes without review. Trigger costly CI runs deliberately, not automatically for every documentation edit.
 
-**Builds and CI:** prefer local reasoning and focused checks. Avoid repeatedly running workflows without a reason. Releases should be reviewed and intentionally triggered.
+**Publishing:** changes to the signed F-Droid repository require maintaining the original signing identity, validating the complete index and performing real-client tests. A green build is not a release acceptance.
 
-## Current phase
-
-No UenkerLabs App Store app releases have been announced. The public landing page and distribution architecture are being prepared.
+Report security-sensitive issues privately rather than in public Issues. See [SECURITY.md](SECURITY.md).
