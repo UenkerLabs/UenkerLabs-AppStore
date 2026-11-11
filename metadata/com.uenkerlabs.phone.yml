@@ -1,11 +1,11 @@
 Categories:
-  - Phone & SMS
+  - "Phone & SMS"
 License: Apache-2.0
 AuthorName: UenkerLabs
-Name: UenkerLabs Telefon
-Summary: Experimentelle Telefonoberfläche
+Name: "UenkerLabs Telefon"
+Summary: "Wählhilfe und Anrufliste"
 Description: |-
-  Beta-Wählhilfe mit Anrufliste und optionaler lokaler Anrufprüfung. Noch keine vollständige Standard-Telefon-App. Keine Änderung der Standard-Anruf-App erforderlich.
+  Experimentelle Telefonoberfläche mit Wählhilfe, Anrufliste und optionaler Anrufprüfung. Benötigt gegebenenfalls Zugriff auf die Anrufliste. Noch kein vollständiger Standard-Dialer.
 SourceCode: https://github.com/YZUe1980/UenkerLabs-AppStore/tree/main/android/phone
 IssueTracker: https://github.com/YZUe1980/UenkerLabs-AppStore/issues
 CurrentVersion: 0.1.0-dev

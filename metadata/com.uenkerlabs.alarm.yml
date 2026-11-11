@@ -1,11 +1,11 @@
 Categories:
-  - Time
+  - "Time"
 License: Apache-2.0
 AuthorName: UenkerLabs
-Name: UenkerLabs Wecker
-Summary: Beta-Wecker mit fünf Android-Widgets
+Name: "UenkerLabs Wecker"
+Summary: "Alarme und fünf Startbildschirm-Widgets"
 Description: |-
-  Experimenteller Wecker mit fünf Startbildschirm-Widgets, Snooze und Alarmplanung. Noch nicht auf allen Geräten geprüft. Für wichtige Termine den bisherigen Systemwecker beibehalten.
+  Beta-Wecker mit Alarmplanung, Schlummerfunktion und fünf Android-Widgets. Noch nicht auf allen Geräten getestet. Für wichtige Termine den vorhandenen Systemwecker weiterverwenden.
 SourceCode: https://github.com/YZUe1980/UenkerLabs-AppStore/tree/main/android/alarm
 IssueTracker: https://github.com/YZUe1980/UenkerLabs-AppStore/issues
 CurrentVersion: 0.1.0-dev

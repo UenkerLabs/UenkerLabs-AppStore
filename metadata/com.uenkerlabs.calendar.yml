@@ -1,11 +1,11 @@
 Categories:
-  - Time
+  - "Time"
 License: Apache-2.0
 AuthorName: UenkerLabs
-Name: UenkerLabs Kalender
-Summary: Experimenteller Android-Kalender
+Name: "UenkerLabs Kalender"
+Summary: "Termine ansehen und erstellen"
 Description: |-
-  Beta-Ansicht für Kalendertermine des Android CalendarProvider. Nutzt bereits synchronisierte Kalender. Nicht als vollständiger Ersatz für Google Kalender vorgesehen.
+  Beta-Kalender für Android: Termine aus bereits synchronisierten Kalendern anzeigen und neue Einträge erstellen. Benötigt Kalenderzugriff. Noch kein vollständiger Ersatz für eine Kalender-App.
 SourceCode: https://github.com/YZUe1980/UenkerLabs-AppStore/tree/main/android/calendar
 IssueTracker: https://github.com/YZUe1980/UenkerLabs-AppStore/issues
 CurrentVersion: 0.1.0-dev
