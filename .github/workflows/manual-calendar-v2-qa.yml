@@ -1,11 +1,6 @@
 name: Calendar 0.2.0-dev one-time build and date arithmetic QA
 on:
   workflow_dispatch:
-  push:
-    branches: ['feat/calendar-google-style-2026-11-11']
-    paths:
-      - '.github/workflows/manual-calendar-v2-qa.yml'
-      - 'android/calendar/**'
 permissions:
   contents: read
 jobs:
