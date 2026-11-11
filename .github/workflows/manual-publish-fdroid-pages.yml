@@ -1,6 +1,10 @@
 name: Manual F-Droid Pages deployment and verification
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/manual-publish-fdroid-pages.yml'
 permissions:
   contents: read
   pages: write
@@ -37,6 +41,7 @@ jobs:
           test -f site/repo/index.html
           test -f site/repo/index-v1.jar
           test -f site/repo/entry.jar
+          python3 scripts/check-public-fdroid.py --repo-dir site/repo
           python3 - <<'PY'
           import hashlib,json,pathlib
           repo=pathlib.Path('site/repo')
