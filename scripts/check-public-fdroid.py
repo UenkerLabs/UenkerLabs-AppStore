@@ -82,10 +82,28 @@ def main():
             if signed_zip.read("entry.json") != entry_blob:
                 raise ValueError("Signed entry.jar differs from hosted entry.json")
         check_signed_jar("index-v1.jar", fetch("index-v1.jar"), temp)
-    count = len(index.get("packages", {}))
-    print(f"PASS: F-Droid mandatory v2 entry fields, hashes, JAR signatures and signed contents. Package IDs: {count}")
+    packages = index.get("packages", {})
+    count = len(packages)
     if count == 0:
-        print("WARN: No APKs published; nothing can be installed from this source yet.")
+        raise ValueError("Refuse to publish an empty beta repository")
+    if len(v1.get("apps", [])) != count or len(v1.get("packages", {})) != count:
+        raise ValueError("F-Droid v1 and v2 package counts differ")
+    expected_apps = {"com.uenkerlabs.calendar", "com.uenkerlabs.messages",
+                     "com.uenkerlabs.phone", "com.uenkerlabs.alarm", "com.uenkerlabs.arcade"}
+    if not expected_apps.issubset(packages):
+        raise ValueError("Missing expected UenkerLabs beta app")
+    expected_app_signer = "d903bd3c7f9bb4fc9738b86982b9064ee9e493c47dc0c2f587b5c7828ea25d30"
+    for appid, package in packages.items():
+        for version in package.get("versions", {}).values():
+            f = version["file"]
+            data = fetch(f["name"].lstrip("/"))
+            if len(data) != f["size"] or sha(data) != f["sha256"]:
+                raise ValueError("Bad APK size or SHA-256: " + f["name"])
+            signatures = version["manifest"]["signer"]["sha256"]
+            if signatures != [expected_app_signer]:
+                raise ValueError("Unexpected app signing identity: " + appid)
+    print(f"PASS: F-Droid v1+v2 schemas, HTTPS, both JAR signatures, 5 APK hashes and stable app signer. Packages: {count}")
+    print("NOTE: Android device installation and in-place updates still need user beta testing.")
 
 if __name__ == "__main__":
     p = argparse.ArgumentParser()

@@ -32,7 +32,7 @@ jobs:
         with:
           distribution: temurin
           java-version: '17'
-      - name: Validate local index and signing identity
+      - name: Validate five beta APKs, signed indices and pinned app signer
         shell: bash
         run: |
           set -euo pipefail

@@ -3,12 +3,12 @@
 ## Present state
 
 - Source + website: default `main` branch.
-- Website + signed empty app index: `gh-pages` branch under `repo/`.
+- Website + signed five-app beta index: `gh-pages` branch under `repo/`.
 - Canonical planned F-Droid URL: `https://yzue1980.github.io/UenkerLabs-AppStore/repo`
 - Repository certificate SHA-256: `1A25F39551B1615980705043AD003D9F3258A8E96E91539DDB0D89ABFCD3B0F8`
-- Current published package count: **0**.
+- Current repository package count: **5** (beta releases).
 - Signed local files: `repo/entry.jar`, `repo/entry.json`, `repo/index-v1.jar`, `repo/index-v1.json`, `repo/index-v2.json`, `repo/icons/icon.png`.
-- JAR signatures and content digests checked locally at generation; public HTTPS and client interoperability **not confirmed**.
+- Repository JAR signatures, APK signatures, package SHA-256s and generated index digests checked locally; real Android-client compatibility remains to be tested.
 
 ## Signing identity
 
@@ -29,8 +29,8 @@ The private PKCS#12 keystore and its passphrase must **never** be committed to G
 9. Add the repository in F-Droid on Android, verify initial install and signed in-place upgrade.
 10. Only after these checks add an app to the public released catalog.
 
-Never publish a debugging APK, an unsigned APK or a source-only project as an installable app.
+Distribute release-variant, durably signed beta APKs only. Label incomplete features; do not present a successful build as a completed real-device QA.
 
 ## GitHub Pages
 
-Pages must be configured to serve the `gh-pages` branch root. The code connector can check repository contents but cannot establish the actual Pages hosting configuration. In `repo/index.html` the human-facing instructions state explicitly that the package source is empty.
+Pages must be configured to serve the `gh-pages` branch root. The code connector can check repository contents but cannot establish the actual Pages hosting configuration. In `repo/index.html` the human-facing instructions list the five beta apps and warn against using unfinished replacements as the only system apps.
