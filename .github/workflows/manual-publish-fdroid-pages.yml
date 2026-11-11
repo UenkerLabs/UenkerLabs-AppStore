@@ -72,7 +72,7 @@ jobs:
           details=(root/'repo/index.html').read_text(encoding='utf-8')
           css=(root/'assets/style.css').read_text(encoding='utf-8')
           assert '<html lang="de">' in page, 'Homepage locale must be German'
-          assert page.count('class="app-card"')==5, 'Must show five beta app cards'
+          assert (page.count('class="app-card"') + page.count('class="app-card game-card"'))==5, 'Must show five beta app cards'
           assert 'Apps are on the way' not in page, 'Old empty catalog must be removed'
           assert 'fonts.googleapis.com' not in css, 'Avoid third-party font requests'
           assert 'UenkerLabs' in page and 'F-Droid' in page
