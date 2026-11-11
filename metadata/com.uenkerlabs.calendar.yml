@@ -3,11 +3,11 @@ Categories:
 License: Apache-2.0
 AuthorName: UenkerLabs
 Name: "UenkerLabs Kalender"
-Summary: "Termine ansehen und erstellen"
+Summary: "Monatsansicht mit farbigen Terminen"
 Description: |-
-  Beta-Kalender für Android: Termine aus bereits synchronisierten Kalendern anzeigen und neue Einträge erstellen. Benötigt Kalenderzugriff. Noch kein vollständiger Ersatz für eine Kalender-App.
+  Neue Beta mit Monatsansicht beim Start, farbigen Terminen, Wisch-Navigation, Tages-/Wochenansichten und Terminübersicht. Nutzt vorhandene Android-Kalender. Echte Gerätetests stehen noch aus.
 SourceCode: https://github.com/YZUe1980/UenkerLabs-AppStore/tree/main/android/calendar
 IssueTracker: https://github.com/YZUe1980/UenkerLabs-AppStore/issues
-CurrentVersion: 0.1.0-dev
-CurrentVersionCode: 1
+CurrentVersion: 0.2.0-dev
+CurrentVersionCode: 2
 UpdateCheckMode: None
