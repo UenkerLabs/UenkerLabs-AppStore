@@ -1,0 +1,68 @@
+name: Generate F-Droid beta indices (unsigned staging)
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/prepare-fdroid-beta-index.yml'
+permissions:
+  contents: read
+jobs:
+  index:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout helper source
+        uses: actions/checkout@v4
+      - name: Checkout staged APKs and public F-Droid config
+        uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+          path: site
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Install Android tools and official fdroidserver
+        run: |
+          set -euo pipefail
+          : "${ANDROID_HOME:=${ANDROID_SDK_ROOT:-/usr/local/lib/android/sdk}}"
+          echo "ANDROID_HOME=$ANDROID_HOME" >> "$GITHUB_ENV"
+          SDK_MANAGER=$(find "$ANDROID_HOME/cmdline-tools" -type f -name sdkmanager -print -quit)
+          test -n "$SDK_MANAGER"
+          "$SDK_MANAGER" --sdk_root="$ANDROID_HOME" --install "platforms;android-35" "build-tools;35.0.0"
+          python -m pip install --disable-pip-version-check fdroidserver
+      - name: Generate index from signed APKs with upstream fdroidserver (never sign on GitHub)
+        working-directory: site
+        run: |
+          set -euo pipefail
+          fdroid update --nosign --clean --create-metadata
+          python - <<'PY'
+          import json,pathlib
+          root=pathlib.Path("repo")
+          v2=json.loads((root/"index-v2.json").read_bytes())
+          entry=json.loads((root/"entry.json").read_bytes())
+          count=len(v2.get("packages",{}))
+          assert count==5, f"Expected five beta apps, found {count}"
+          assert entry["index"]["numPackages"]==count, "Invalid F-Droid mandatory numPackages"
+          for app in ("alarm","arcade","calendar","messages","phone"):
+              assert "com.uenkerlabs."+app in v2["packages"], app
+          print("FDROIDSERVER GENERATED FIVE BETA PACKAGES")
+          PY
+      - name: Upload unsigned F-Droid metadata for offline signature with backed-up private key
+        uses: actions/upload-artifact@v4
+        with:
+          name: fdroid-five-beta-unsigned-indexes
+          path: |
+            site/repo/index-v1.json
+            site/repo/index-v2.json
+            site/repo/entry.json
+            site/repo/index.xml
+            site/repo/icons/**
+            site/repo/*.png
+          if-no-files-found: error
+          retention-days: 2
