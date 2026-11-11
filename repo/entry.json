@@ -4,7 +4,8 @@
   "index": {
     "name": "/index-v2.json",
     "sha256": "de1c6cb5630ec74cd86fe9216a20a4d00202e954d877eb74d08207601dbf768e",
-    "size": 611
+    "size": 611,
+    "numPackages": 0
   },
   "diffs": {}
 }
