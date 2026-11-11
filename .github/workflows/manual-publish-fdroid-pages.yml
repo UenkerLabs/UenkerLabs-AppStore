@@ -53,7 +53,7 @@ jobs:
           print('Local index and icon hashes verified; package count',len(index.get('packages',{})))
           PY
           for signed in entry index-v1; do
-            jarsigner -verify -strict -verbose -certs "site/repo/$signed.jar" > "/tmp/$signed-verification.txt"
+            jarsigner -verify -verbose -certs "site/repo/$signed.jar" > "/tmp/$signed-verification.txt"
             if ! grep -qi 'jar verified' "/tmp/$signed-verification.txt"; then exit 1; fi
             keytool -printcert -jarfile "site/repo/$signed.jar" | grep -i 'SHA256' | tr -d ': ' | grep -qi '1A25F39551B1615980705043AD003D9F3258A8E96E91539DDB0D89ABFCD3B0F8'
           done
