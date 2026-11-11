@@ -1,3 +1,5 @@
+> **Nachtrag 11.11.2026:** Die drei separaten Android-APKs wurden gebaut, mit dem bisherigen App-Signer signiert und im UenkerLabs-F-Droid-Katalog veröffentlicht. Die frühere `arcade`-Sammelapp ist **bereits aus dem aktiven Index entfernt**. F-Droid-Indizes sind mit unverändertem Repository-Schlüssel signiert. Alle 28 Spielelevel, Grafik-/Framerate- und Touch-Steuerung sowie Updateverhalten sind noch **nicht** vollständig auf realen Geräten abgenommen. Untenstehende Formulierungen im Futur sind die damaligen Auftrags- und Releasepläne, keine noch offenen Schritte der technischen Bereitstellung.
+
 # UenkerLabs Games – drei eigenständige Android-Spiele
 
 Stand: 11.11.2026 | Ursprung: ausdrücklicher Auftrag des Inhabers

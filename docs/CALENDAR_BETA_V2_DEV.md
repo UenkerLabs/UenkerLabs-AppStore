@@ -1,3 +1,5 @@
+> **Nachtrag 11.11.2026:** Der ursprüngliche folgende Bericht entstand **vor** der Veröffentlichung. **Aktueller Stand:** Kalender `0.2.0-dev` (versionCode 2) ist signiert und im öffentlichen F-Droid-Beta-Katalog mit fünf Apps veröffentlicht. Telefon/SMS sind aus dem aktiven Katalog entfernt, die alte Arcade-Sammlung wurde durch drei eigenständige Beta-Spiele ersetzt. Vollständiger Android-Geräte-/In-Place-Update-Test bleibt offen. Historische Aussagen wie „noch nicht veröffentlicht“ unten beziehen sich ausschließlich auf den damaligen Prüfstand.
+
 # UenkerLabs Kalender – Umsetzung KAL-001 und KAL-002
 
 Stand: 11. November 2026. Ausgangsbranch: `main`, Beta 0.1.0-dev / versionCode 1.
