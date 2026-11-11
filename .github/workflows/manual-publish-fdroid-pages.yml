@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - '.github/workflows/manual-publish-fdroid-pages.yml'
+      - 'scripts/check-public-fdroid.py'
 permissions:
   contents: read
   pages: write
