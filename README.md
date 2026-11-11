@@ -2,8 +2,8 @@
 
 Eigenes signiertes F-Droid-Beta-Repository für Android. Die Apps können einzeln installiert und später über dieselbe Paketquelle aktualisiert werden.
 
-- **Website:** https://yzue1980.github.io/UenkerLabs-AppStore/
-- **Paketquelle:** https://yzue1980.github.io/UenkerLabs-AppStore/repo
+- **Website:** https://uenkerlabs.github.io/UenkerLabs-AppStore/
+- **Paketquelle:** https://uenkerlabs.github.io/UenkerLabs-AppStore/repo
 - **GitHub-Quellcode:** https://github.com/UenkerLabs/UenkerLabs-AppStore
 
 ## Aktive Android-Beta-Apps
@@ -24,7 +24,7 @@ Die vorherige Minispiel-Sammlung `arcade` sowie die abgebrochenen Projekte Telef
 
 In F-Droid diese zusätzliche Paketquelle eintragen:
 
-`https://yzue1980.github.io/UenkerLabs-AppStore/repo`
+`https://uenkerlabs.github.io/UenkerLabs-AppStore/repo`
 
 Repository-Fingerabdruck SHA-256:
 `1A25F39551B1615980705043AD003D9F3258A8E96E91539DDB0D89ABFCD3B0F8`

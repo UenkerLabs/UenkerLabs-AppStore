@@ -54,7 +54,7 @@ jobs:
           icon_bytes=(repo/icon['name'].lstrip('/')).read_bytes()
           assert len(icon_bytes)==icon['size'], 'icon size mismatch'
           assert hashlib.sha256(icon_bytes).hexdigest()==icon['sha256'], 'icon digest mismatch'
-          assert index['repo']['address']=='https://yzue1980.github.io/UenkerLabs-AppStore/repo'
+          assert index['repo']['address']=='https://uenkerlabs.github.io/UenkerLabs-AppStore/repo'
           print('Local index and icon hashes verified; package count',len(index.get('packages',{})))
           PY
           for signed in entry index-v1; do
@@ -101,8 +101,8 @@ jobs:
           python3 - <<'PY'
           from urllib.request import Request,urlopen
           pages={
-            'https://yzue1980.github.io/UenkerLabs-AppStore/?edition=20261111':'class="app-card"',
-            'https://yzue1980.github.io/UenkerLabs-AppStore/repo/?edition=20261111':'Fünf Beta-Apps'
+            'https://uenkerlabs.github.io/UenkerLabs-AppStore/?edition=20261111':'class="app-card"',
+            'https://uenkerlabs.github.io/UenkerLabs-AppStore/repo/?edition=20261111':'Fünf Beta-Apps'
           }
           for url,marker in pages.items():
               with urlopen(Request(url,headers={'User-Agent':'UenkerLabs-Site-QA/1.0','Cache-Control':'no-cache'}),timeout=25) as response:

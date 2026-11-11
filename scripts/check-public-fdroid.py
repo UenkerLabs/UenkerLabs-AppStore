@@ -15,7 +15,7 @@ import subprocess
 import tempfile
 from urllib.request import Request, urlopen
 
-BASE = "https://yzue1980.github.io/UenkerLabs-AppStore/repo"
+BASE = "https://uenkerlabs.github.io/UenkerLabs-AppStore/repo"
 EXPECTED_CERT_SHA256 = "1A25F39551B1615980705043AD003D9F3258A8E96E91539DDB0D89ABFCD3B0F8"
 LOCAL_ROOT = None
 
