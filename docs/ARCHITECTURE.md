@@ -1,35 +1,36 @@
-# Distribution architecture and migration notes
+# UenkerLabs AppStore: distribution and key custody
 
-## Target architecture
+## Present state
 
-Android source repositories → selected GitHub Actions builds → review/signing stage → F-Droid-compatible index + APKs → GitHub Pages → Android clients.
+- Source + website: default `main` branch.
+- Website + signed empty app index: `gh-pages` branch under `repo/`.
+- Canonical planned F-Droid URL: `https://yzue1980.github.io/UenkerLabs-AppStore/repo`
+- Repository certificate SHA-256: `1A25F39551B1615980705043AD003D9F3258A8E96E91539DDB0D89ABFCD3B0F8`
+- Current published package count: **0**.
+- Signed local files: `repo/entry.jar`, `repo/entry.json`, `repo/index-v1.jar`, `repo/index-v1.json`, `repo/index-v2.json`, `repo/icons/icon.png`.
+- JAR signatures and content digests checked locally at generation; public HTTPS and client interoperability **not confirmed**.
 
-The store is a platform for **all kinds of Android apps**, not one particular phone or app category. Google Drive may be used for internal planning but is not a public package host. SourceForge is outside this project.
+## Signing identity
 
-## What exists now
+The signing identity is new, with no assumed trust continuity from any historical source. Old metadata is not part of the current published tree; Git history may still contain past revisions.
 
-- Main branch: public website source, documentation.
-- `gh-pages` branch: public website **plus** older `repo/` metadata previously published for Tangelo OS.
-- No newly approved UenkerLabs App Store APK in the catalog.
+The private PKCS#12 keystore and its passphrase must **never** be committed to GitHub, logged, emailed, added to public build artifacts or shared Drive folders. Keep separate encrypted offline backups. Do not regenerate keys for ordinary updates.
 
-## Safety-critical migration
+## Release checklist
 
-Earlier documentation referenced `https://yzue1980.github.io/tangelo-apps/repo` and a Tangelo OS signing setup. A rename of a package repository is **not** equivalent to migrating its signing trust.
+1. Build the Android app from reviewed source with a pinned toolchain.
+2. Verify unit/UI tests and the permissions/roles required for the app.
+3. Inspect package name, versionCode, signing certificate, dependencies and third-party licenses.
+4. Sign the final APK under controlled key custody.
+5. Generate the repository index with the same repository signing key using a maintained F-Droid indexing tool. Include accurate APK and metadata hashes.
+6. Verify `entry.jar`, `index-v1.jar`, index-v2 SHA-256, icon SHA-256 and actual APK SHA-256.
+7. Publish the verified artifacts atomically to the `gh-pages` repository path.
+8. Fetch files from public HTTPS independently; compare bytes, hashes and signer fingerprint.
+9. Add the repository in F-Droid on Android, verify initial install and signed in-place upgrade.
+10. Only after these checks add an app to the public released catalog.
 
-Before activating a new package source:
-1. Inventory which clients, if any, use the old URL and repository certificate.
-2. Inspect actual signed index contents and certificate fingerprints.
-3. Decide whether preserving old identity or deliberately introducing a new identity is appropriate.
-4. Store private signing keys outside public source; design strict CI permissions and release approvals.
-5. Verify a test installation **and update** on Android, including package-signature continuity.
-6. Only then publish a new repository address and onboarding QR code.
+Never publish a debugging APK, an unsigned APK or a source-only project as an installable app.
 
-**No signing keys or signing passwords belong in Git, Google Drive folders shared publicly, pull-request artifacts, or workflow logs.** Key custody/backups must be decided before automation.
+## GitHub Pages
 
-## Web publishing
-
-The site is plain HTML, CSS and a tiny JavaScript file: no framework, build pipeline, analytics, or cookies. It is intentionally able to run without a package manager. The published website is hosted from `gh-pages`. The existing `repo/` directory is preserved independently; future deployment must never overwrite it accidentally.
-
-## Publication policy
-
-The site lists only actual releases, with a package identifier, version, signing identity, source repository, license, supported Android versions and reproducible provenance where available. In-progress ideas remain labeled as such.
+Pages must be configured to serve the `gh-pages` branch root. The code connector can check repository contents but cannot establish the actual Pages hosting configuration. In `repo/index.html` the human-facing instructions state explicitly that the package source is empty.

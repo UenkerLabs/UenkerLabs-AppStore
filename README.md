@@ -1,55 +1,44 @@
-# UenkerLabs App Store — Independent Android Apps
+# UenkerLabs AppStore
 
-**Good apps. No compromises.**
+Open-source Android app source collection and distribution website.
 
-UenkerLabs App Store is an independent, open-source initiative for Android applications of all kinds: useful everyday tools, productivity apps, creative experiments, and bigger ideas. It is **not** limited to widgets, Nothing phones, or a single manufacturer.
-
-**GitHub Pages target:** https://yzue1980.github.io/UenkerLabs-AppStore/ (public delivery not independently verified after the repository rename)  
 **Source:** https://github.com/YZUe1980/UenkerLabs-AppStore
+**Website target:** https://yzue1980.github.io/UenkerLabs-AppStore/
+**Signed F-Droid source:** https://yzue1980.github.io/UenkerLabs-AppStore/repo
+**Repository certificate SHA-256:** `1A25F39551B1615980705043AD003D9F3258A8E96E91539DDB0D89ABFCD3B0F8`
 
-## Current status
+## Current status (2026-11-11)
 
-**Early stage · No UenkerLabs App Store Android apps released yet.** The static project website and future app catalog are committed. Its availability at the renamed GitHub Pages address must be checked. A working F-Droid installation flow for new releases has **not** been verified.
+- The public `main` branch contains the website and **development source code**, not released APKs.
+- Android prototypes: calendar, SMS viewer, phone helper and an alarm clock with five widgets. See [android/README.md](android/README.md).
+- The `gh-pages` branch contains a **new independently signed, currently empty** F-Droid index and a human-readable `repo/index.html`.
+- Local index JAR signatures were verified, as were the F-Droid v2 JSON SHA-256 and icon digest. The public HTTPS response and an actual Android F-Droid client installation/update have **not** been verified.
+- **Zero installable applications are currently published.** Do not represent a source tree as an installed APK.
 
-The `gh-pages` branch still contains legacy F-Droid index files associated with a previous Tangelo OS setup. They have been retained deliberately to avoid silently breaking existing trust/signature chains. **Do not interpret the presence of those files as a current UenkerLabs App Store app release.**
+## Distribution identity
 
-## What belongs here
+This is a new signing certificate, **not** a silent rename of a previous repository certificate. Clients trusting an older certificate cannot automatically switch to the new source. The old published index was removed from the current `gh-pages` tree, but can remain in historical Git commits.
 
-- The public-facing UenkerLabs App Store website and future app catalog.
-- Documentation for our shared development and distribution principles.
-- Later: an independently validated F-Droid repository with signed releases.
+The private signing key and password are **not** in GitHub. Subsequent index releases must use the same signing identity; loss of the key means losing secure continuity. Back up the key securely before publishing a first APK.
 
-Each Android app may have its **own source repository**. The store repository is the public catalog and distribution entry point, not an obligation to put every app's source into one codebase.
+## Project requirements
 
-## Project principles
+- Original branding and art, and license-compliant use of external source code.
+- Privacy first, no unnecessary permissions or tracking.
+- Android builds and tests before publishing, especially alarms, SMS, phone calls and call screening.
+- Source review for credentials and personal data.
+- No unsolicited or prohibited in-car radar alert functions.
+- No automated publication of unreviewed APKs.
 
-1. **Open source:** reviewable code and clear licensing.
-2. **Broad Android support:** no brand-exclusive scope unless a particular app genuinely requires specific hardware.
-3. **Privacy by design:** no personal records, tokens, signing keys, or hidden credentials in public commits.
-4. **Honest release states:** a concept is not an available app; an APK is not a verified F-Droid update path.
-5. **Lean automation:** run validation and releases intentionally; avoid unnecessary CI consumption.
-6. **Secure distribution:** protect and back up signing keys; verify APK package names and signing certificates before publication.
+## Repository structure
 
-## Structure
-
-- `index.html`, `assets/`, `favicon.svg` — static, responsive landing page.
-- `docs/ARCHITECTURE.md` — distribution model, migration plan, and signature safety.
-- `CONTRIBUTING.md` — how to participate.
-- `SECURITY.md` — coordinated disclosure and sensitive-data rules.
-- `gh-pages` — actual published static site and **preserved legacy** `/repo` index.
-
-## Roadmap
-
-- [x] Rebrand the public project website and documentation.
-- [ ] Verify existing F-Droid repository identity, fingerprints, and consumers.
-- [ ] Decide safe signing-key custody and build/release approvals.
-- [ ] Create a tested, controlled GitHub Actions publication workflow.
-- [ ] Publish a first independently tested Android app with verified metadata.
-
-## Contributing
-
-Ideas, accessibility improvements, fixes, and translations are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md).
+- `index.html`, `assets/`, `favicon.svg`: public website source.
+- `android/`: native Android prototypes.
+- `docs/ARCHITECTURE.md`: source-to-signed-F-Droid release process.
+- `docs/ANDROID_REPLACEMENT_ROADMAP.md`: app replacement project backlog.
+- `gh-pages/repo/` (branch, not directory on main): signed F-Droid metadata.
 
 ## License
 
-Website source and repository documentation: [Apache License 2.0](LICENSE). Each future app declares its own license independently.
+Website and repository documentation: Apache-2.0 (see [LICENSE](LICENSE)).
+App-specific licenses and third-party notices must be reviewed and declared before distribution.
