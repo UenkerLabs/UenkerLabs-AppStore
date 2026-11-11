@@ -6,4 +6,4 @@ dependencyResolutionManagement {
     repositories { google(); mavenCentral() }
 }
 rootProject.name = 'UenkerLabsAndroid'
-include ':calendar', ':messages', ':phone', ':alarm'
+include ':calendar', ':messages', ':phone', ':alarm', ':arcade'

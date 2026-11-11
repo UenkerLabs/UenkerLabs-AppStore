@@ -1,27 +1,24 @@
-# UenkerLabs Android replacement roadmap — 2026-11-10
+# UenkerLabs Android replacement roadmap — 2026-11-11
 
-Aim: reduce reliance on Google-branded Android applications gradually, **not** to remove critical Android system services or compromise device functionality.
+Goal: replace selected proprietary Android apps gradually without removing vital Android system services.
 
-## Code present (not APK-released)
-- Calendar: Calendar Provider event list and creation; relies on installed Google/kSync/Outlook sync adapters; account round-trip untested.
-- SMS: read-only SMS display; manually curated local sender list and keyword labels; not MMS/RCS or a default SMS app.
-- Phone: dial-pad hand-off, call-log viewer and optional CallScreeningService; no full InCallService, not a default phone.
-- Alarm: real exact-alarm scheduling code, foreground audio, five appwidgets; device testing mandatory.
+## Source-code prototypes, NOT released APKs
+- Calendar: Android Calendar Provider reading/editing and one-hour event creation; Google, Infomaniak/kSync and Outlook rely on installed sync adapters.
+- SMS: read-only SMS display with local sender labels and blocklist; not MMS/RCS or a default SMS app.
+- Phone: dial-pad handoff, call-log viewer and manually configured CallScreeningService; not a full default phone.
+- Alarm: exact-alarm scheduling and five home-screen widgets; reliability still untested on device.
+- Arcade: five original offline mini-games in one app, no network or personal data permissions.
 
-## Design backlog (no functional code committed yet)
-- Universal email (Infomaniak IMAP/SMTP, Gmail OAuth/IMAP, Microsoft Graph OAuth/IMAP as available).
-- Privacy-oriented browser (evaluate current GeckoView / Chromium-based engines, update responsibility, blocker APIs, user control).
-- Five original mini-game concepts: Memory Grid, Number Merge, Pattern Path, Reflex Tap, Logic Lines.
-- Driving assistant: route preparation, GPS speed and traffic information; do **not** enable prohibited active speed-camera alerts for drivers in Germany.
-- Contacts, Notes, Tasks, File manager, Gallery, Calculator, Weather, Clock/timers.
-
-## Legal and licensing gate
-Consult official APIs, platform restrictions and each upstream license before any code reuse. Reading public repository code does not confer unlimited reuse. No proprietary app graphics or trademarks copied. Open-source work must preserve attribution and license compatibility.
+## Design backlog
+- Universal e-mail app with IMAP/SMTP and OAuth-based Gmail/Outlook support; security and licensing review mandatory.
+- Privacy-first browser; prefer maintained browser engines instead of promising an unmaintained Chromium fork.
+- Legal driving assistant with GPS speed and planning features. Active speed-camera warnings while driving in Germany must not be included.
+- Contacts, Notes, Tasks, Files, Photos, Calculator, Weather.
 
 ## Release gate
-1. Functional build from reproducible source.
-2. Tests covering sensitive roles, notifications, wake reliability, privacy and permissions.
-3. Independent review of source files, secrets and third-party licenses.
-4. APK signing-key custody; signing certificate verification; F-Droid index signing.
-5. Verified HTTPS public delivery, F-Droid client sync and clean installation/update.
-6. Only then update app catalog to `released`.
+1. Reproducible Gradle build, no placeholders represented as complete apps.
+2. Real-device tests, accessibility checks and permission review.
+3. Security review, third-party licensing review, removal of secrets and personal data.
+4. APK and repository signing using safely backed-up keys.
+5. Verify GitHub Pages HTTPS delivery, F-Droid client integration, installation and update.
+6. List only fully verified released apps publicly.
