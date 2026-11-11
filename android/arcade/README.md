@@ -1,20 +1,7 @@
-# UenkerLabs Spiele — fünf originale Offline-Minispiele
+# UenkerLabs Spiele – 0.1.0-dev
 
-Source prototype, no APK published. Android 8+ minimum; no dangerous permissions, no INTERNET, no in-app purchases, no ads or analytics. All gameplay and graphics are original simple Android UI elements, not copies of proprietary games.
+Eine native Offline-App mit fünf einfachen Minispielen: Zahlensprung, Merkfeld, Reaktionslabor, Musterfolge und 3×3-Schiebepuzzle. Kein INTERNET, keine Werbung, keine In-App-Käufe.
 
-| Spiel | Regeln | Ende |
-|---|---|---|
-| **Zahlensprung** | 10 Additions-/Subtraktionsfragen, je vier Antworten | Punktestand aus zehn |
-| **Merkfeld** | 3 von 9 Feldern 1,6 Sekunden merken und wieder antippen | 5 Runden |
-| **Reaktionslabor** | Warten bis grünes Feld erscheint, Reaktionszeit messen | Ergebnis in Millisekunden |
-| **Musterfolge** | Vier Felder leuchten in wachsender Reihenfolge, Folge wiederholen | Bis 8 Schritte oder Fehler |
-| **Schiebepuzzle** | 3×3-Zahlen durch Verschieben in Reihenfolge bringen | Gelöst, Zugzähler |
+**Korrigierter Veröffentlichungsstatus (11.11.2026):** Eine signierte Beta-APK liegt unter `gh-pages/repo/UenkerLabs-arcade-beta-0.1.0.apk`; die früher dokumentierte Aussage „keine APK veröffentlicht“ ist überholt. Das bedeutet **keine** erfolgreiche Installation, Nutzerabnahme oder bestätigte öffentliche GitHub-Pages-Erreichbarkeit nach dem Kontonamenswechsel.
 
-The project uses stock Android views for accessibility, large touch targets and German-language labels. A redesign with better animations, TalkBack and adaptive layouts is planned.
-
-## Test plan
-- Build `:arcade:assembleDebug` under Android SDK 35 and Gradle 8.10.2.
-- Check screen rotation, very large font, TalkBack, touch targets and app recreation.
-- Test randomized sliding puzzle solvability and legal moves.
-- Check stale delayed callbacks when switching minigames.
-- A successful on-device test has NOT been performed.
+Die Java-Smoke-Tests für das Schiebepuzzle prüfen legale Züge und die Lösbarkeit erzeugter Mischungen. Dies ist kein Ersatz für Android-Tests zu Rotation, großen Schriftgrößen, TalkBack, verzögerten UI-Callbacks oder App-Wiederherstellung.

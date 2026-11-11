@@ -116,5 +116,8 @@ def main():
 if __name__ == "__main__":
     p = argparse.ArgumentParser()
     p.add_argument("--repo-dir", type=Path, default=None)
-    LOCAL_ROOT = p.parse_args().repo_dir
+    p.add_argument("--base-url", default=BASE, help="HTTPS URL of repository to inspect")
+    args = p.parse_args()
+    LOCAL_ROOT = args.repo_dir
+    BASE = args.base_url.rstrip("/")
     main()

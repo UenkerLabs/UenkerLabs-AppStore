@@ -1,12 +1,12 @@
-# UenkerLabs Android: Beta-Module
+# UenkerLabs Android – Beta-Module
 
-**Aktiv im F-Droid-Repository:**
-- `calendar` – Version 0.2.0-dev, Monatsansicht und Android-Kalenderintegration.
-- `alarm` – Version 0.1.0-dev, experimenteller Wecker mit Widgets.
-- `arcade` – Version 0.1.0-dev, Spiele nur als Techniktest.
+**Signierte APK-Dateien im `gh-pages`-Branch (Stand 11.11.2026):**
+- `calendar`: 0.1.0-dev und 0.2.0-dev; aktuelle Beta ist versionCode 2.
+- `alarm`: 0.1.0-dev, experimenteller Wecker mit fünf Widgets.
+- `arcade`: 0.1.0-dev, fünf Offline-Minispiele.
 
-**Pausiert:** `phone` und `messages`, aus der öffentlichen Verteilung entfernt; historische Quellcodeversionen erhalten.
+**Nicht im aktuellen F-Droid-Katalog:** `phone` und `messages`. Die Quelltexte werden als pausierte Prototypen archiviert; weder Vollständigkeit noch produktive Nutzbarkeit ist behauptet.
 
-Für Builds: JDK 17, SDK 35, AGP 8.8.2, Gradle 8.10.2. Kalender-Release und Debug-Build liefen auf GitHub Actions unter Run `43020343588` erfolgreich durch. Die Kalenderlogik besteht Datums-Smoketests über 192 Monate.
+**Build-Werkzeuge laut Quellkonfiguration:** Java 17, Android SDK 35, Android Gradle Plugin 8.8.2 und Gradle 8.10.2. Das Repository enthält keinen ausführbaren Gradle-Wrapper; die manuellen GitHub-Actions-Workflows richten Gradle selbst ein. Vorhandene frühere CI-Ergebnisse sind keine neue Reproduzierbarkeits- oder Geräteabnahme.
 
-Signaturen und APK-Prüfsummen sind geprüft; F-Droid-In-Place-Update und Funktionstests auf dem physischen Zielgerät stehen aus.
+**Wichtig:** Die `gh-pages`-Indexdateien sind noch auf die alte GitHub-Pages-Adresse signiert. Nach der Umbenennung des Kontos ist die öffentliche Quelle nicht abschließend getestet. APK-Dateien und Schlüsselidentitäten nicht ohne gesonderte Signierprüfung ändern. Siehe [../docs/ARCHITECTURE.md](../docs/ARCHITECTURE.md).

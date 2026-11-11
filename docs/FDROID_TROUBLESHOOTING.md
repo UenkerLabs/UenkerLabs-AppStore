@@ -1,28 +1,31 @@
-# F-Droid: invalid repository – UenkerLabs
+# UenkerLabs F-Droid – Paketquelle prüfen und reparieren
 
-The repository currently contains **zero installable APKs**. A source-code commit is never a published app.
+**Stand:** 11.11.2026 nach Änderung des GitHub-Benutzernamens.
 
-## Verified
-- Repository owner/name: `YZUe1980/UenkerLabs-AppStore` (public).
-- Signed F-Droid metadata is on `gh-pages` at `repo/`.
-- The signing certificate SHA-256 in both repository metadata and the private, backed-up PKCS#12 key is `1A25F39551B1615980705043AD003D9F3258A8E96E91539DDB0D89ABFCD3B0F8`.
+## Fakten statt überholter Anleitungen
 
-## Not yet verified
-- Actual GitHub Pages configuration, HTTPS response and Android F-Droid client acceptance.
-- A first signed release, install or update.
+- Aktuelles Repository: https://github.com/UenkerLabs/UenkerLabs-AppStore
+- Das `gh-pages`-Verzeichnis `repo/` enthält **vier signierte Beta-APKs** für **drei App-Paketnamen**; die alte Aussage „0 installierbare Apps“ ist überholt.
+- Signierte Index-Dateien sind vorhanden. Die darin signierte **alte** Repository-Adresse ist `https://yzue1980.github.io/UenkerLabs-AppStore/repo`.
+- Der neue GitHub-Benutzername ist `UenkerLabs`. Die vermutlich künftig verwendbare Pages-Adresse `https://uenkerlabs.github.io/UenkerLabs-AppStore/repo` ist **noch nicht über eine öffentliche HTTPS-Prüfung bestätigt**.
+- Repository-Zertifikatsfingerabdruck SHA-256: `1A25F39551B1615980705043AD003D9F3258A8E96E91539DDB0D89ABFCD3B0F8`. Er darf nicht durch einen neuen Schlüssel ersetzt werden.
 
-## Recovery for "Invalid repository"
-1. Open GitHub `Settings → Pages`: https://github.com/YZUe1980/UenkerLabs-AppStore/settings/pages
-2. Preferred simple source: `Deploy from a branch` → `gh-pages` → `/ (root)`. Save. The branch root includes `index.html` and `.nojekyll`.
-3. Alternatively: set source to `GitHub Actions`, then run `Manual F-Droid Pages deployment and verification` once. This workflow checks signed indexes locally, publishes the existing static site, then checks public HTTPS and signatures. It does not read private signing material and does not publish APKs.
-4. Check https://yzue1980.github.io/UenkerLabs-AppStore/repo/entry.json in a regular browser. **A 404, network error or HTML error page is not a working F-Droid source.**
-5. In F-Droid, add only the URL `https://yzue1980.github.io/UenkerLabs-AppStore/repo` in the URL field. If there is a separate fingerprint field, enter `1A25F39551B1615980705043AD003D9F3258A8E96E91539DDB0D89ABFCD3B0F8`. Avoid accidentally including `?fingerprint=` in the URL field when also entering it separately.
-6. If the client still rejects the source even after public checks pass, capture the **exact exception text and F-Droid app version**. The missing APK is not enough evidence on its own to establish the cause.
+## Sichere Prüf- und Reparaturfolge (keine automatisch ausgeführte Änderung)
 
-## Real release process
-Use maintained `fdroidserver` to generate future indexes from reviewed, release-signed APKs; avoid hand-editing signed jars. Protect the repository signing key and password. Preserve the same certificate identity for subsequent releases. Build, device-test, sign and verify an APK before making a first release.
+1. GitHub `Settings → Pages` im Repository aufrufen und die tatsächliche Zieladresse sowie die Veröffentlichungsquelle verifizieren: https://github.com/UenkerLabs/UenkerLabs-AppStore/settings/pages
+2. Die **verifizierte** HTTPS-Adresse für `/repo/entry.json`, `/repo/entry.jar`, `/repo/index-v1.jar`, `/repo/index-v2.json` und die vier APKs tatsächlich abrufen. 404, HTML-Fehlerseite oder DNS-Fehler sind keine gültige Paketquelle.
+3. Alte und neue Adresse aus der Auslieferung mit den Feldern `repo.address` in v1/v2 und `repo_url` abgleichen. Diese Werte enthalten derzeit den alten Pages-Host.
+4. **Erst nach bestätigter Hostwahl:** die Indizes kontrolliert neu erstellen und mit dem bisherigen Repository-Schlüssel offline signieren, ohne APK-Signer, App-IDs oder Versioncodes zu wechseln.
+5. Beide signierten JAR-Dateien, JSON-Hashes, Indexinhalte, Fingerabdruck und APK-Hashes prüfen. Danach einmalig bewusst veröffentlichen.
+6. Mit dem F-Droid-Client die freigegebene neue Adresse als Paketquelle hinzufügen und Installation sowie ein In-Place-Update physisch testen.
 
-References:
-- https://f-droid.org/de/docs/Setup_an_F-Droid_App_Repo/
+Die bisherige Meldung „ungültige Paketquelle“ kann mehrere Ursachen haben; aus dem Repository allein lässt sich die aktuelle Ursache nicht sicher bestimmen. Ein erfolgreicher GitHub-Actions-Lauf ist kein Gerätnachweis.
+
+## Historischer Fehler
+
+Am 11.11.2026 fehlte in einem früheren v2-Index das erforderliche `index.numPackages`-Feld; das wurde im späteren Index auf **3** korrigiert. Der ältere Reparaturbericht dokumentiert den damaligen Zustand und ist nicht als aktuelle Null-Paket-Aussage zu lesen.
+
+Primärquellen:
+- https://f-droid.org/en/docs/Setup_an_F-Droid_App_Repo/
 - https://f-droid.org/en/docs/All_our_APIs/
-- https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site
+- https://docs.github.com/en/account-and-profile/concepts/username-changes

@@ -1,3 +1,7 @@
+> **Historischer Zustandsbericht:** Die unten dokumentierten **fünf** Beta-Karten gehörten zu einem früheren Stand desselben Tages. Der aktuelle `gh-pages`-Katalog wurde danach auf **drei** Paketnamen (Kalender, Wecker, Spiele) und vier APK-Dateien reduziert. Telefon und Nachrichten sind pausiert. Die bisherige GitHub-Benutzeradresse ist inzwischen veraltet. Dokumentierte damalige Prüfungen beweisen keine heutige öffentliche Erreichbarkeit. Aktueller Einstieg: [../README.md](../README.md).
+
+---
+
 # UenkerLabs AppStore – Außenauftritt aktualisiert
 
 **Stand:** 11.11.2026 · **Bereich:** öffentliche Website, F-Droid-Metadaten, GitHub-Präsentation

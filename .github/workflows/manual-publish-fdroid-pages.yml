@@ -1,10 +1,6 @@
 name: Manual F-Droid Pages deployment and verification
 on:
   workflow_dispatch:
-  push:
-    branches: [main]
-    paths:
-      - '.github/workflows/manual-publish-fdroid-pages.yml'
 permissions:
   contents: read
   pages: write
@@ -32,6 +28,24 @@ jobs:
         with:
           distribution: temurin
           java-version: '17'
+      - name: Refuse publication of legacy signed F-Droid address after GitHub rename
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          expected = 'https://uenkerlabs.github.io/UenkerLabs-AppStore/repo'
+          v1 = json.loads(Path('site/repo/index-v1.json').read_text())
+          v2 = json.loads(Path('site/repo/index-v2.json').read_text())
+          addresses = [v1['repo']['address'].rstrip('/'), v2['repo']['address'].rstrip('/')]
+          if addresses != [expected, expected]:
+              raise SystemExit(
+                  'STOP: F-Droid v1/v2 still contain the old signed Pages URL. '
+                  'Verify the actual new hosting URL and rebuild/re-sign with the '
+                  'existing repository key before publishing. Existing APKs must not be re-signed.'
+              )
+          print('Signed repository address matches expected GitHub Pages host')
+          PY
       - name: Validate active beta APKs, signed indices and pinned app signer
         shell: bash
         run: |
