@@ -77,6 +77,10 @@ jobs:
           assert 'Apps are on the way' not in page, 'Old empty catalog must be removed'
           assert 'fonts.googleapis.com' not in css, 'Avoid third-party font requests'
           assert 'UenkerLabs' in page and 'F-Droid' in page
+          repo_link='https://fdroid.link/#https://uenkerlabs.github.io/UenkerLabs-AppStore/repo?fingerprint=1A25F39551B1615980705043AD003D9F3258A8E96E91539DDB0D89ABFCD3B0F8'
+          for name,html in (('main page',page),('repo landing',details)):
+              assert repo_link in html, f'{name}: F-Droid deep link missing or malformed'
+              assert 'fdroid.link/#repo=' not in html and 'fdroidrepos://' not in html, f'{name}: obsolete F-Droid link format'
           for app, version in {'calendar':'0.2.0','alarm':'0.1.0','neon':'1.0.0','ember':'1.0.0','skybound':'1.0.0'}.items():
               filename='UenkerLabs-'+app+'-beta-'+version+'.apk'
               assert filename in page and filename in details, filename
@@ -110,5 +114,6 @@ jobs:
                   assert response.status==200, (url,response.status)
                   html=response.read().decode('utf-8')
               assert marker in html, (url,'Public site served outdated HTML')
+              assert 'https://fdroid.link/#https://uenkerlabs.github.io/UenkerLabs-AppStore/repo?fingerprint=1A25F39551B1615980705043AD003D9F3258A8E96E91539DDB0D89ABFCD3B0F8' in html, (url,'Public site missing correct F-Droid import link')
           print('PASS: Public homepage and F-Droid source landing on GitHub Pages')
           PY
