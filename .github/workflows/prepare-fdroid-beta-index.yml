@@ -43,16 +43,16 @@ jobs:
           v2=json.loads((root/"index-v2.json").read_bytes())
           entry=json.loads((root/"entry.json").read_bytes())
           count=len(v2.get("packages",{}))
-          assert count==3, f"Expected three beta apps, found {count}"
+          assert count==5, f"Expected five beta apps, found {count}"
           assert entry["index"]["numPackages"]==count, "Invalid F-Droid mandatory numPackages"
-          for app in ("alarm","arcade","calendar"):
+          for app in ("alarm","calendar","neon","ember","skybound"):
               assert "com.uenkerlabs."+app in v2["packages"], app
-          print("FDROIDSERVER GENERATED THREE BETA PACKAGES")
+          print("FDROIDSERVER GENERATED FIVE BETA PACKAGES")
           PY
       - name: Upload unsigned F-Droid metadata for offline signature with backed-up private key
         uses: actions/upload-artifact@v4
         with:
-          name: fdroid-three-beta-unsigned-indexes
+          name: fdroid-five-beta-unsigned-indexes
           path: |
             site/repo/index-v1.json
             site/repo/index-v2.json

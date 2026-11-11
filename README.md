@@ -1,36 +1,40 @@
 # UenkerLabs AppStore
-Eigene signierte Android-Beta-Paketquelle für Tests, Feedback und Updates.
+
+Eigenes signiertes F-Droid-Beta-Repository für Android. Die Apps können einzeln installiert und später über dieselbe Paketquelle aktualisiert werden.
 
 - **Website:** https://yzue1980.github.io/UenkerLabs-AppStore/
-- **F-Droid-Repositorium:** https://yzue1980.github.io/UenkerLabs-AppStore/repo
-- **Issues:** https://github.com/YZUe1980/UenkerLabs-AppStore/issues
+- **Paketquelle:** https://yzue1980.github.io/UenkerLabs-AppStore/repo
+- **GitHub-Quellcode:** https://github.com/UenkerLabs/UenkerLabs-AppStore
 
-## Veröffentlichungen vom 11.11.2026
+## Aktive Android-Beta-Apps
 
-| App | Version | Status |
+| App | Version | Umfang |
 | --- | --- | --- |
-| Kalender | **0.2.0-dev (versionCode 2)** | Start mit Monatsansicht, farbige Termine, Ansichten und Wisch-Navigation |
-| Wecker | 0.1.0-dev (versionCode 1) | Frühe Beta, kritische Alarme weiterhin mit dem Systemwecker |
-| Spiele | 0.1.0-dev (versionCode 1) | Fünf Offline-Minispiele nur als Techniktest |
+| UenkerLabs Kalender | 0.2.0-dev | Monatsansicht, farbige Termine, Navigation und Android-Kalenderintegration |
+| UenkerLabs Wecker | 0.1.0-dev | Alarmplanung und Widgets; bitte Systemwecker weiterverwenden |
+| **Neon Bastion** | 1.0.0-beta | Originaler 2,5D-Shooter mit 8 Level-Sektoren |
+| **Ember Atlas** | 1.0.0-beta | Eigenständiges Action-Rollenspiel mit 8 Kapiteln |
+| **Skybound Shift** | 1.0.0-beta | Side-Scrolling-Jump-and-Run mit 12 Levels |
 
-**Telefon und SMS sind auf Wunsch des Inhabers aus dem öffentlichen Katalog und den APK-Verteilungsdateien entfernt**; der historische Quellcode wird zunächst nicht gelöscht. Bereits auf Geräten installierte Apps werden nicht automatisch deinstalliert.
+Die drei Spiele sind getrennte Android-Anwendungen mit unabhängigen Paketkennungen. Sie verwenden eigene Canvas-Grafik und originale Inhalte; keine fremden Spielgrafiken oder Quellcodes übernommen. Alle Spiele sind offline. Die Spiele sind **technische Beta-Versionen**, keine durch realen Gerätetest vollständig abgenommenen Endfassungen. Sound, Multiplayer und eine vollwertige 3D-Polygon-Engine sind nicht implementiert.
 
-Der Kalender **0.2.0** ist mit dem gleichen App-Signierschlüssel wie Version 0.1.0 signiert. Beide Versionen bleiben im F-Droid-Index für nachvollziehbare Updates. APK- und Indexsignaturen und Checksummen wurden technisch geprüft; Installation und Aktualisierung auf dem Nothing Phone stehen noch zur Praxiskontrolle aus.
+Die vorherige Minispiel-Sammlung `arcade` sowie die abgebrochenen Projekte Telefon und SMS wurden aus dem öffentlichen Katalog entfernt, aber der historische Quellcode und die Git-Historie sind erhalten. Das Entfernen aus F-Droid deinstalliert nichts automatisch.
 
-## Paketquelle
+## Installation und Update
+
+In F-Droid diese zusätzliche Paketquelle eintragen:
 
 `https://yzue1980.github.io/UenkerLabs-AppStore/repo`
 
 Repository-Fingerabdruck SHA-256:
 `1A25F39551B1615980705043AD003D9F3258A8E96E91539DDB0D89ABFCD3B0F8`
 
-Unabhängiges selbst gehostetes F-Droid-Repository, nicht der offizielle Hauptkatalog.
+Die APKs sind dauerhaft mit dem UenkerLabs-App-Signierschlüssel signiert; die Indexdateien mit dem separaten F-Droid-Repository-Schlüssel. Keine privaten Schlüssel/Passwörter liegen auf GitHub.
 
-## Entwicklung und Veröffentlichungen
+## Entwicklung und Grenzen
 
-- `main`: Quellcode, Tests, Konfiguration, Anleitungen.
-- `gh-pages`: öffentliche Website, signierte APKs, signierte Paketindizes.
-- `scripts/check-public-fdroid.py`: Prüft verpflichtende Indexfelder, APK-Hashwerte, Signaturen und Paketliste.
-- `docs/FDROID_BETA_UPDATE_PROCESS.md`: Signaturkette und künftiger Updateablauf.
-
-Private Signing-Keys und Passwörter werden nicht in GitHub gespeichert. Builds auf GitHub sind keine Android-Geräteabnahme.
+- `main`: Android-Quellcode, Tests, F-Droid-Schema-Prüfungen, Dokumentation.
+- `gh-pages`: Website, signierte APKs und signierte Indexdateien.
+- GitHub Actions prüft Java/Android-Builds und öffentliche Paketdaten.
+- Die tatsächliche Darstellung, Touch-Steuerung, Framerate sowie alle 28 Game-Stages müssen auf einem Android-Gerät durchgespielt und überprüft werden. Tests auf realen Geräten sind **noch nicht bestätigt**.
+- Status und technische Grenzen: [docs/STANDALONE_GAMES_2026-11-11.md](docs/STANDALONE_GAMES_2026-11-11.md).

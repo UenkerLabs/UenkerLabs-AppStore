@@ -92,14 +92,23 @@ def main():
         raise ValueError("Refuse to publish an empty beta repository")
     if len(v1.get("apps", [])) != count or len(v1.get("packages", {})) != count:
         raise ValueError("F-Droid v1 and v2 package counts differ")
-    expected_apps = {"com.uenkerlabs.calendar", "com.uenkerlabs.alarm", "com.uenkerlabs.arcade"}
+    expected_apps = {"com.uenkerlabs.calendar", "com.uenkerlabs.alarm",
+                     "com.uenkerlabs.neon", "com.uenkerlabs.ember", "com.uenkerlabs.skybound"}
     if set(packages) != expected_apps:
-        raise ValueError("Unexpected package set: expected Calendar, Alarm and Arcade")
+        raise ValueError("Unexpected F-Droid package set")
     if set(v1["packages"]) != expected_apps or {a["packageName"] for a in v1["apps"]} != expected_apps:
         raise ValueError("v1 and v2 package sets differ")
     calendar_versions = [v["manifest"]["versionCode"] for v in packages["com.uenkerlabs.calendar"]["versions"].values()]
     if sorted(calendar_versions) != [1, 2]:
         raise ValueError("Expected Calendar versions 1 and 2")
+    for mod in ("neon", "ember", "skybound"):
+        versions = packages["com.uenkerlabs." + mod]["versions"]
+        if len(versions) != 1 or next(iter(versions.values()))["manifest"]["versionCode"] != 1:
+            raise ValueError("Expected one original beta release for " + mod)
+        icon = packages["com.uenkerlabs." + mod]["metadata"]["icon"]["en-US"]
+        data = fetch(icon["name"].lstrip("/"))
+        if sha(data) != icon["sha256"] or len(data) != icon["size"]:
+            raise ValueError("Invalid game cover icon: " + mod)
     expected_app_signer = "d903bd3c7f9bb4fc9738b86982b9064ee9e493c47dc0c2f587b5c7828ea25d30"
     for appid, package in packages.items():
         for version in package.get("versions", {}).values():

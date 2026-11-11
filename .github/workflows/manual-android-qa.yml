@@ -28,11 +28,11 @@ jobs:
         run: bash scripts/check-source.sh
       - name: Build active beta APKs for local signing
         working-directory: android
-        run: gradle :calendar:assembleRelease :alarm:assembleRelease :arcade:assembleRelease --no-daemon --console=plain --continue
+        run: gradle :calendar:assembleRelease :alarm:assembleRelease :neon:assembleRelease :ember:assembleRelease :skybound:assembleRelease --no-daemon --console=plain --continue
       - name: Upload unsigned release APKs for private signing
         uses: actions/upload-artifact@v4
         with:
-          name: "three-android-unsigned-release-apks"
+          name: "five-android-unsigned-release-apks"
           path: "android/*/build/outputs/apk/release/*-unsigned.apk"
           if-no-files-found: error
           retention-days: 2

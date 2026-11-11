@@ -1,12 +1,15 @@
-# UenkerLabs Android: Beta-Module
+# UenkerLabs Android Apps
 
-**Aktiv im F-Droid-Repository:**
-- `calendar` – Version 0.2.0-dev, Monatsansicht und Android-Kalenderintegration.
-- `alarm` – Version 0.1.0-dev, experimenteller Wecker mit Widgets.
-- `arcade` – Version 0.1.0-dev, Spiele nur als Techniktest.
+## Aktive Beta-Versionen
+- `calendar`: UenkerLabs Kalender 0.2.0-dev, Monatsansicht.
+- `alarm`: UenkerLabs Wecker 0.1.0-dev, Weckfunktion und Widgets.
+- `neon`: Neon Bastion 1.0.0-beta, 2,5D Raycasting-Shooter, acht Sektoren.
+- `ember`: Ember Atlas 1.0.0-beta, Fantasy-Action-RPG, acht Kapitel.
+- `skybound`: Skybound Shift 1.0.0-beta, Jump-and-Run, zwölf Levels.
+- `gamekit`: Gemeinsamer, statisch eingebundener Android-Game-Unterbau; keine separate installierbare App.
 
-**Pausiert:** `phone` und `messages`, aus der öffentlichen Verteilung entfernt; historische Quellcodeversionen erhalten.
+## Historische Testprojekte
+`arcade`, `phone` und `messages` bleiben im Git-Verlauf und in den Quellen zur Nachvollziehbarkeit, werden aber nicht mehr im aktuellen F-Droid-Katalog angeboten.
 
-Für Builds: JDK 17, SDK 35, AGP 8.8.2, Gradle 8.10.2. Kalender-Release und Debug-Build liefen auf GitHub Actions unter Run `43020343588` erfolgreich durch. Die Kalenderlogik besteht Datums-Smoketests über 192 Monate.
-
-Signaturen und APK-Prüfsummen sind geprüft; F-Droid-In-Place-Update und Funktionstests auf dem physischen Zielgerät stehen aus.
+## Android-Builds
+JDK 17, Android SDK 35, AGP 8.8.2, Gradle 8.10.2. Die drei unabhängigen Spiele wurden über GitHub Actions zusammen in Debug und Release gebaut. Erste statische Source-QA bestanden. Keine realen Geräte-/Framerate-/End-to-End-Spieltests durchgeführt; Beta-Status beibehalten. Die Spiele haben keine INTERNET-Berechtigung und speichern Fortschritt lokal.
