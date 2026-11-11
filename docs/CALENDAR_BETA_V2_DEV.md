@@ -1,3 +1,7 @@
+> **Historischer Entwicklungsstand (11.11.2026 vor der Veröffentlichung):** Die unten erhaltene Aussage „kein APK signiert oder veröffentlicht“ wurde später am 11.11.2026 überholt. Der aktuelle `gh-pages`-Branch enthält die signierte Kalender-Beta 0.2.0 (versionCode 2) und den 0.1.0-Vorgänger. Das beschreibt noch **keine** erfolgreiche Endgeräte-Abnahme oder aktuelle öffentliche HTTPS-Verfügbarkeit. Siehe [../README.md](../README.md).
+
+---
+
 # UenkerLabs Kalender – Umsetzung KAL-001 und KAL-002
 
 Stand: 11. November 2026. Ausgangsbranch: `main`, Beta 0.1.0-dev / versionCode 1.

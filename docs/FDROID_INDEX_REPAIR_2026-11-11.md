@@ -1,3 +1,7 @@
+> **Historischer Reparaturbericht:** Die folgende Aussage „0 Pakete“ galt einem früheren Zwischenstand. Im zuletzt ausgelesenen signierten F-Droid-v2-Index (`gh-pages`, 11.11.2026) sind **drei Paketnamen und vier APK-Versionen** erfasst, einschließlich `entry.index.numPackages=3`. Der alte Befund wird aus Gründen der Nachvollziehbarkeit nicht rückwirkend überschrieben. Aktuelle Namenswechselprobleme siehe [FDROID_TROUBLESHOOTING.md](FDROID_TROUBLESHOOTING.md).
+
+---
+
 # F-Droid index format correction (2026-11-11)
 
 The previous signed v2 index entry was missing the mandatory `index.numPackages` field. The official F-Droid client v2 model requires this value and rejects documents without it in its unit tests. The existing repository has 0 packages, so the corrected value is 0.

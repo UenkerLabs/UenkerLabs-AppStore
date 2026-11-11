@@ -1,19 +1,20 @@
 # UenkerLabs F-Droid – signierte Beta-Updates
 
-Stand: 11.11.2026. Aktive Pakete: Kalender (0.2.0-dev/2), Wecker und Spiele (0.1.0-dev/1). Telefon und SMS sind aus dem aktiven v1/v2/XML-Katalog und den aktuellen APK-Dateien entfernt; Versionshistorie auf GitHub erhalten.
+**Prüfstand 11.11.2026:** drei aktive App-Pakete, vier APK-Dateien. Kalender 0.2.0-dev / versionCode 2, Wecker und Spiele jeweils 0.1.0-dev / versionCode 1. Telefon und Nachrichten sind nicht mehr im aktuellen aktiven Katalog.
 
-Kalender 0.2.0 nutzt den bisherigen App-Signierschlüssel mit SHA-256-Zertifikat `D903BD3C7F9BB4FC9738B86982B9064EE9E493C47DC0C2F587B5C7828EA25D30`.
-F-Droid-Repository-Zertifikat SHA-256: `1A25F39551B1615980705043AD003D9F3258A8E96E91539DDB0D89ABFCD3B0F8`.
+- **Repository-Zertifikatsfingerabdruck SHA-256:** `1A25F39551B1615980705043AD003D9F3258A8E96E91539DDB0D89ABFCD3B0F8`
+- **App-Signierer SHA-256:** `D903BD3C7F9BB4FC9738B86982B9064EE9E493C47DC0C2F587B5C7828EA25D30`
+- Die Indizes enthalten derzeit noch die alte Pages-Adresse `https://yzue1980.github.io/UenkerLabs-AppStore/repo`. Nach der Umbenennung darf eine neue öffentliche Adresse **erst nach Prüfung, Neubildung und Signierung** als funktionierende Paketquelle beworben werden.
+- Dass Schlüssel gesichert sind und wo genau sie verwahrt werden, wurde bei dieser Repository-Sichtung nicht unabhängig überprüft. Private Schlüssel niemals in dieses öffentliche Repository oder in Actions hochladen.
 
-Private Schlüssel und Passwörter befinden sich ausschließlich im privaten UenkerLabs-Drive und sind nicht in GitHub Actions oder dem öffentlichen Repository hinterlegt. Indexmetadaten basieren auf den zuvor mit fdroidserver erzeugten Dateien; diese konkrete Version wurde lokal bearbeitet und danach erneut signiert.
+## Kontrollierter Vorgang
 
-### Aktualisierungsvorgang
-1. Änderungen freigeben und versionCode erhöhen.
-2. Android-Release-APK bauen, mit bisherigem App-Schlüssel signieren und APK-Signer verifizieren.
-3. Quell-APKs in `gh-pages` bereitstellen; alte kompatible Versionen bei Bedarf behalten.
-4. Metadaten mit fdroidserver aktualisieren oder sorgfältig gegen dessen Schema validieren.
-5. index-v1.jar und entry.jar mit altem Repository-Schlüssel signieren und Fingerabdruck vergleichen.
-6. Öffentliche GitHub-Pages-Veröffentlichung und HTTPS-Integritätsprüfung ausführen.
-7. Installation, Datenbestand, Berechtigungen und In-Place-Update am Zielgerät überprüfen.
+1. Eine APK-Änderung bewusst freigeben, versionCode erhöhen und die APK mit **dem bisherigen App-Signierschlüssel** signieren.
+2. Den signierten APK-Inhalt, Android-Paketnamen, Zertifikat und die Berechtigungen prüfen.
+3. Die tatsächlich funktionierende Pages-/Host-Adresse gesondert verifizieren.
+4. `fdroidserver` für die Indexdateien mit dem **bestehenden Repository-Schlüssel** benutzen; neue Adresse konsistent in `config.yml` und v1/v2 erfassen.
+5. Beide signierten JARs, `entry.json`, v1/v2, APK- und Icon-Hashes, Zeitstempel und `numPackages` prüfen.
+6. Eine manuelle Veröffentlichung erst nach der vollständigen lokalen Prüfung durchführen. Anschließend öffentliche HTTPS-Dateien mit den erwarteten Bytes vergleichen.
+7. Die Paketquelle und das In-Place-Update auf dem Android-Gerät wirklich prüfen.
 
-**Status:** Erfolgreich gebaut und signiert, keine dokumentierte reale Endgeräteabnahme.
+**Noch offen:** Nachweisbare öffentliche Erreichbarkeit nach Namenswechsel, F-Droid-Client-Installation und Kalender-Update auf dem Zielgerät. Ein erfolgreicher Build oder JAR-Check ist keine Geräteabnahme.
