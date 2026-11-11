@@ -1,0 +1,50 @@
+name: Calendar 0.2.0-dev one-time build and date arithmetic QA
+on:
+  workflow_dispatch:
+  push:
+    branches: ['feat/calendar-google-style-2026-11-11']
+    paths:
+      - '.github/workflows/manual-calendar-v2-qa.yml'
+      - 'android/calendar/**'
+permissions:
+  contents: read
+jobs:
+  calendar-review:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Verify Monday-first calendar math without Android
+        run: |
+          mkdir -p /tmp/calendar-grid-test
+          javac -d /tmp/calendar-grid-test \
+            android/calendar/src/main/java/com/uenkerlabs/calendar/MonthGrid.java \
+            android/calendar/src/test/java/com/uenkerlabs/calendar/MonthGridSmokeTest.java
+          java -cp /tmp/calendar-grid-test com.uenkerlabs.calendar.MonthGridSmokeTest
+      - name: Set up preinstalled Android SDK 35
+        run: |
+          set -euo pipefail
+          : "${ANDROID_HOME:=${ANDROID_SDK_ROOT:-/usr/local/lib/android/sdk}}"
+          echo "ANDROID_HOME=$ANDROID_HOME" >> "$GITHUB_ENV"
+          SDK_MANAGER=$(find "$ANDROID_HOME/cmdline-tools" -type f -name sdkmanager -print -quit)
+          test -n "$SDK_MANAGER"
+          "$SDK_MANAGER" --sdk_root="$ANDROID_HOME" --install "platforms;android-35" "build-tools;35.0.0"
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.10.2'
+      - name: Compile calendar beta only (no publishing or signing)
+        working-directory: android
+        run: gradle :calendar:assembleDebug :calendar:assembleRelease --no-daemon --console=plain
+      - name: Upload review artifacts for manual testing only
+        uses: actions/upload-artifact@v4
+        with:
+          name: UenkerLabs-calendar-0.2.0-dev-review
+          path: |
+            android/calendar/build/outputs/apk/debug/*.apk
+            android/calendar/build/outputs/apk/release/*-unsigned.apk
+          if-no-files-found: error
+          retention-days: 3
