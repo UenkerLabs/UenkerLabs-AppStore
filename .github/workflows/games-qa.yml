@@ -1,0 +1,68 @@
+name: Standalone games Android build and source QA
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - 'feat/standalone-games-2026-11-11'
+    paths:
+      - 'android/gamekit/**'
+      - 'android/neon/**'
+      - 'android/ember/**'
+      - 'android/skybound/**'
+      - 'android/settings.gradle'
+      - 'android/build.gradle'
+      - '.github/workflows/games-qa.yml'
+permissions:
+  contents: read
+jobs:
+  test-build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Independent module and progression audit
+        run: python3 scripts/check-games.py
+      - name: Install Android 35 from preinstalled SDK
+        shell: bash
+        run: |
+          set -euo pipefail
+          : "${ANDROID_HOME:=${ANDROID_SDK_ROOT:-/usr/local/lib/android/sdk}}"
+          echo "ANDROID_HOME=$ANDROID_HOME" >> "$GITHUB_ENV"
+          SDK_MANAGER=$(find "$ANDROID_HOME/cmdline-tools" -type f -name sdkmanager -print -quit)
+          test -n "$SDK_MANAGER"
+          "$SDK_MANAGER" --sdk_root="$ANDROID_HOME" --install "platforms;android-35" "build-tools;35.0.0"
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.10.2'
+      - name: Build 3 separate Android packages
+        working-directory: android
+        run: |
+          gradle :neon:assembleDebug :ember:assembleDebug :skybound:assembleDebug :neon:assembleRelease :ember:assembleRelease :skybound:assembleRelease --no-daemon --console=plain --continue
+      - name: Verify APK manifests and distinct identifiers
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          names=['neon','ember','skybound']
+          for name in names:
+              expected=Path(f'android/{name}/build/outputs/apk/release/{name}-release-unsigned.apk')
+              assert expected.is_file() and expected.stat().st_size>10_000,expected
+              print(f'PASS {name}: unsigned release APK created, {expected.stat().st_size:,} bytes')
+          PY
+      - name: Upload unsigned release builds for offline signing
+        uses: actions/upload-artifact@v4
+        with:
+          name: three-original-android-games-unsigned
+          path: android/*/build/outputs/apk/release/*-unsigned.apk
+          if-no-files-found: error
+          retention-days: 3
+      - name: Upload non-release debug builds for manual review
+        uses: actions/upload-artifact@v4
+        with:
+          name: three-original-android-games-debug
+          path: android/*/build/outputs/apk/debug/*.apk
+          if-no-files-found: error
+          retention-days: 3
