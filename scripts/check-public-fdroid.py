@@ -81,17 +81,25 @@ def main():
         with zipfile.ZipFile(io.BytesIO(entry_jar)) as signed_zip:
             if signed_zip.read("entry.json") != entry_blob:
                 raise ValueError("Signed entry.jar differs from hosted entry.json")
-        check_signed_jar("index-v1.jar", fetch("index-v1.jar"), temp)
+        index1_jar = fetch("index-v1.jar")
+        check_signed_jar("index-v1.jar", index1_jar, temp)
+        with zipfile.ZipFile(io.BytesIO(index1_jar)) as signed_zip:
+            if signed_zip.read("index-v1.json") != fetch("index-v1.json"):
+                raise ValueError("Signed index-v1.jar differs from hosted v1 JSON")
     packages = index.get("packages", {})
     count = len(packages)
     if count == 0:
         raise ValueError("Refuse to publish an empty beta repository")
     if len(v1.get("apps", [])) != count or len(v1.get("packages", {})) != count:
         raise ValueError("F-Droid v1 and v2 package counts differ")
-    expected_apps = {"com.uenkerlabs.calendar", "com.uenkerlabs.messages",
-                     "com.uenkerlabs.phone", "com.uenkerlabs.alarm", "com.uenkerlabs.arcade"}
-    if not expected_apps.issubset(packages):
-        raise ValueError("Missing expected UenkerLabs beta app")
+    expected_apps = {"com.uenkerlabs.calendar", "com.uenkerlabs.alarm", "com.uenkerlabs.arcade"}
+    if set(packages) != expected_apps:
+        raise ValueError("Unexpected package set: expected Calendar, Alarm and Arcade")
+    if set(v1["packages"]) != expected_apps or {a["packageName"] for a in v1["apps"]} != expected_apps:
+        raise ValueError("v1 and v2 package sets differ")
+    calendar_versions = [v["manifest"]["versionCode"] for v in packages["com.uenkerlabs.calendar"]["versions"].values()]
+    if sorted(calendar_versions) != [1, 2]:
+        raise ValueError("Expected Calendar versions 1 and 2")
     expected_app_signer = "d903bd3c7f9bb4fc9738b86982b9064ee9e493c47dc0c2f587b5c7828ea25d30"
     for appid, package in packages.items():
         for version in package.get("versions", {}).values():
@@ -102,7 +110,7 @@ def main():
             signatures = version["manifest"]["signer"]["sha256"]
             if signatures != [expected_app_signer]:
                 raise ValueError("Unexpected app signing identity: " + appid)
-    print(f"PASS: F-Droid v1+v2 schemas, HTTPS, both JAR signatures, 5 APK hashes and stable app signer. Packages: {count}")
+    print(f"PASS: F-Droid v1+v2 schemas, HTTPS, both JAR signatures, APK hashes and stable app signer. Packages: {count}")
     print("NOTE: Android device installation and in-place updates still need user beta testing.")
 
 if __name__ == "__main__":

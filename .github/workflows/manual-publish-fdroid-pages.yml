@@ -32,7 +32,7 @@ jobs:
         with:
           distribution: temurin
           java-version: '17'
-      - name: Validate five beta APKs, signed indices and pinned app signer
+      - name: Validate active beta APKs, signed indices and pinned app signer
         shell: bash
         run: |
           set -euo pipefail
@@ -72,15 +72,17 @@ jobs:
           details=(root/'repo/index.html').read_text(encoding='utf-8')
           css=(root/'assets/style.css').read_text(encoding='utf-8')
           assert '<html lang="de">' in page, 'Homepage locale must be German'
-          assert page.count('class="app-card"')==5, 'Must show five beta app cards'
+          assert page.count('class="app-card"')==3, 'Must show three beta app cards'
           assert 'Apps are on the way' not in page, 'Old empty catalog must be removed'
           assert 'fonts.googleapis.com' not in css, 'Avoid third-party font requests'
           assert 'UenkerLabs' in page and 'F-Droid' in page
-          for app in ('calendar','messages','phone','alarm','arcade'):
-              filename='UenkerLabs-'+app+'-beta-0.1.0.apk'
+          for app, version in {'calendar':'0.2.0','alarm':'0.1.0','arcade':'0.1.0'}.items():
+              filename='UenkerLabs-'+app+'-beta-'+version+'.apk'
               assert filename in page and filename in details, filename
               assert (root/'repo'/filename).exists(), filename
-          print('PASS: German beta catalog, two public pages and five APK download links')
+          for removed in ('phone','messages'):
+              assert not (root/'repo'/('UenkerLabs-'+removed+'-beta-0.1.0.apk')).exists()
+          print('PASS: Three public app cards and updated APK links')
           PY
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
@@ -100,7 +102,7 @@ jobs:
           from urllib.request import Request,urlopen
           pages={
             'https://yzue1980.github.io/UenkerLabs-AppStore/?edition=20261111':'class="app-card"',
-            'https://yzue1980.github.io/UenkerLabs-AppStore/repo/?edition=20261111':'Eine Quelle.'
+            'https://yzue1980.github.io/UenkerLabs-AppStore/repo/?edition=20261111':'Drei Beta-Apps'
           }
           for url,marker in pages.items():
               with urlopen(Request(url,headers={'User-Agent':'UenkerLabs-Site-QA/1.0','Cache-Control':'no-cache'}),timeout=25) as response:

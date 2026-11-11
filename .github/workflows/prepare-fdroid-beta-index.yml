@@ -1,10 +1,6 @@
-name: Generate F-Droid beta indices (unsigned staging)
+name: Generate F-Droid beta indices for active packages
 on:
   workflow_dispatch:
-  push:
-    branches: [main]
-    paths:
-      - '.github/workflows/prepare-fdroid-beta-index.yml'
 permissions:
   contents: read
 jobs:
@@ -47,16 +43,16 @@ jobs:
           v2=json.loads((root/"index-v2.json").read_bytes())
           entry=json.loads((root/"entry.json").read_bytes())
           count=len(v2.get("packages",{}))
-          assert count==5, f"Expected five beta apps, found {count}"
+          assert count==3, f"Expected three beta apps, found {count}"
           assert entry["index"]["numPackages"]==count, "Invalid F-Droid mandatory numPackages"
-          for app in ("alarm","arcade","calendar","messages","phone"):
+          for app in ("alarm","arcade","calendar"):
               assert "com.uenkerlabs."+app in v2["packages"], app
-          print("FDROIDSERVER GENERATED FIVE BETA PACKAGES")
+          print("FDROIDSERVER GENERATED THREE BETA PACKAGES")
           PY
       - name: Upload unsigned F-Droid metadata for offline signature with backed-up private key
         uses: actions/upload-artifact@v4
         with:
-          name: fdroid-five-beta-unsigned-indexes
+          name: fdroid-three-beta-unsigned-indexes
           path: |
             site/repo/index-v1.json
             site/repo/index-v2.json
