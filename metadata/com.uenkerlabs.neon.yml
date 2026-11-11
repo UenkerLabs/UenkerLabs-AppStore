@@ -1,0 +1,13 @@
+Categories:
+  - Games
+License: Apache-2.0
+AuthorName: UenkerLabs
+Name: "Neon Bastion"
+Summary: "Neon-Shooter mit acht Sektoren"
+Description: |-
+  Offline-Shooter in stilisierter 2,5D-Perspektive. Acht Neon-Sektoren, Drohnen und gespeicherter Fortschritt. Beta, noch ohne vollständige Gerätetests.
+SourceCode: https://github.com/UenkerLabs/UenkerLabs-AppStore/tree/main/android/neon
+IssueTracker: https://github.com/UenkerLabs/UenkerLabs-AppStore/issues
+CurrentVersion: 1.0.0-beta
+CurrentVersionCode: 1
+UpdateCheckMode: None

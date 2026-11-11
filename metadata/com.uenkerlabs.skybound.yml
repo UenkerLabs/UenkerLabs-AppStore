@@ -1,0 +1,13 @@
+Categories:
+  - Games
+License: Apache-2.0
+AuthorName: UenkerLabs
+Name: "Skybound Shift"
+Summary: "Jump-and-Run mit zwölf Levels"
+Description: |-
+  Eigenständiges Jump-and-Run mit zwölf Levels, drei Welten, Kristallen, Checkpoints, Doppelsprung und Dash. Beta, noch ohne vollständige Gerätetests.
+SourceCode: https://github.com/UenkerLabs/UenkerLabs-AppStore/tree/main/android/skybound
+IssueTracker: https://github.com/UenkerLabs/UenkerLabs-AppStore/issues
+CurrentVersion: 1.0.0-beta
+CurrentVersionCode: 1
+UpdateCheckMode: None

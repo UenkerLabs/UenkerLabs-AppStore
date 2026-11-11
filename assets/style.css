@@ -10,3 +10,6 @@
 
 /* Three active beta apps; explanatory note occupies its own full-width row. */
 .app-cards .catalog-note{grid-column:1/-1}
+
+/* 2026-11-11: Three original standalone games use their own local 512px icons. */
+.game-icon{width:58px;height:58px;border-radius:15px;object-fit:cover;display:block;box-shadow:0 7px 23px #0007}.game-mini{background:linear-gradient(140deg,#7be4e5,#a98cdb)}.game-card{border-color:#8eb9e040}
