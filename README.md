@@ -1,44 +1,43 @@
 # UenkerLabs AppStore
 
-Open-source Android app source collection and distribution website.
+Independent, open-source Android app source collection and F-Droid distribution project.
 
-**Source:** https://github.com/YZUe1980/UenkerLabs-AppStore
-**Website target:** https://yzue1980.github.io/UenkerLabs-AppStore/
-**Signed F-Droid source:** https://yzue1980.github.io/UenkerLabs-AppStore/repo
-**Repository certificate SHA-256:** `1A25F39551B1615980705043AD003D9F3258A8E96E91539DDB0D89ABFCD3B0F8`
+- **Source:** https://github.com/YZUe1980/UenkerLabs-AppStore
+- **Website (target):** https://yzue1980.github.io/UenkerLabs-AppStore/
+- **Signed F-Droid source (currently empty):** https://yzue1980.github.io/UenkerLabs-AppStore/repo
+- **Repository certificate SHA-256:** `1A25F39551B1615980705043AD003D9F3258A8E96E91539DDB0D89ABFCD3B0F8`
 
-## Current status (2026-11-11)
+## Verified status (2026-11-11)
 
-- The public `main` branch contains the website and **development source code**, not released APKs.
-- Android prototypes: calendar, SMS viewer, phone helper and an alarm clock with five widgets. See [android/README.md](android/README.md).
-- The `gh-pages` branch contains a **new independently signed, currently empty** F-Droid index and a human-readable `repo/index.html`.
-- Local index JAR signatures were verified, as were the F-Droid v2 JSON SHA-256 and icon digest. The public HTTPS response and an actual Android F-Droid client installation/update have **not** been verified.
-- **Zero installable applications are currently published.** Do not represent a source tree as an installed APK.
+The default `main` branch holds **development source code, not APKs**. Five Android modules are committed:
+1. `calendar` — native calendar viewer/editor using existing Android calendars (Google, Infomaniak/kSync, Outlook through compatible sync integrations).
+2. `messages` — SMS inbox preview with local labels and manual blocklist; no MMS/RCS/default SMS role yet.
+3. `phone` — dial pad, call-log viewer, and optional local CallScreeningService; not a full default dialer.
+4. `alarm` — alarm scheduling, ringtone service and **five home-screen widgets**.
+5. `arcade` — **five original offline mini-games** with no network permission.
 
-## Distribution identity
+The universal mail client, privacy browser and lawful driving assistant are design backlog, **not coded releases**.
 
-This is a new signing certificate, **not** a silent rename of a previous repository certificate. Clients trusting an older certificate cannot automatically switch to the new source. The old published index was removed from the current `gh-pages` tree, but can remain in historical Git commits.
+The `gh-pages` branch holds a new, signed, **empty** F-Droid repository. Its index signatures and local hash checks were verified, and repository blobs match local generation. Public HTTPS delivery, Android APK builds, F-Droid client sync, installation and update are **NOT verified**. **Zero apps are currently installable from this source.**
 
-The private signing key and password are **not** in GitHub. Subsequent index releases must use the same signing identity; loss of the key means losing secure continuity. Back up the key securely before publishing a first APK.
+## Quality and release
 
-## Project requirements
+- Review original code, privacy permissions, accessibility and third-party license obligations.
+- `bash scripts/check-source.sh`: tracked-source audit and pure Java sliding-puzzle smoke test when JDK exists. Not a substitute for Android builds or tests.
+- Android builds require JDK 17, SDK 35, AGP 8.8.2, Gradle 8.10.2; see [android/README.md](android/README.md).
+- Do not sign or release an untested app. Never commit private keys, passwords or user data.
+- Private key backup custody must remain restricted and independently checked before each publication.
+- An existing prior repository certificate is not silently interchangeable with the current certificate.
 
-- Original branding and art, and license-compliant use of external source code.
-- Privacy first, no unnecessary permissions or tracking.
-- Android builds and tests before publishing, especially alarms, SMS, phone calls and call screening.
-- Source review for credentials and personal data.
-- No unsolicited or prohibited in-car radar alert functions.
-- No automated publication of unreviewed APKs.
+## Layout
 
-## Repository structure
-
-- `index.html`, `assets/`, `favicon.svg`: public website source.
-- `android/`: native Android prototypes.
-- `docs/ARCHITECTURE.md`: source-to-signed-F-Droid release process.
-- `docs/ANDROID_REPLACEMENT_ROADMAP.md`: app replacement project backlog.
-- `gh-pages/repo/` (branch, not directory on main): signed F-Droid metadata.
+- `android/` — native Android modules.
+- `scripts/` — optional local audit and smoke test.
+- `docs/ARCHITECTURE.md` — F-Droid signing and release checks.
+- `docs/ANDROID_REPLACEMENT_ROADMAP.md` — feature roadmap and migration risks.
+- `index.html`, `assets/`, `favicon.svg` — website.
+- `gh-pages` branch `repo/` — signed metadata, **currently no APKs**.
 
 ## License
-
-Website and repository documentation: Apache-2.0 (see [LICENSE](LICENSE)).
-App-specific licenses and third-party notices must be reviewed and declared before distribution.
+Site source and repository documentation: Apache-2.0 (root [LICENSE](LICENSE)).
+App sources are original prototypes; verify and declare per-app licensing before distribution.
