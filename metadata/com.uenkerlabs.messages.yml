@@ -1,0 +1,13 @@
+Categories:
+  - Phone & SMS
+License: Apache-2.0
+AuthorName: UenkerLabs
+Name: UenkerLabs Nachrichten
+Summary: Experimentelle SMS-Ansicht mit lokaler Spam-Markierung
+Description: |-
+  Beta-SMS-Anzeige mit lokaler Spam-Kennzeichnung und manueller Sperrliste. Noch keine vollwertige SMS/MMS/RCS-App. Nicht als Standard-SMS-App einrichten.
+SourceCode: https://github.com/YZUe1980/UenkerLabs-AppStore/tree/main/android/messages
+IssueTracker: https://github.com/YZUe1980/UenkerLabs-AppStore/issues
+CurrentVersion: 0.1.0-dev
+CurrentVersionCode: 1
+UpdateCheckMode: None
