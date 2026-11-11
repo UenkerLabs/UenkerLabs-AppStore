@@ -7,7 +7,7 @@ on:
       - '.github/workflows/manual-android-qa.yml'
     inputs:
       module:
-        description: "Which Android app should be built?"
+        description: "Build all five prototypes (selection kept for UI compatibility)"
         required: true
         default: arcade
         type: choice
@@ -29,21 +29,23 @@ jobs:
         with:
           distribution: temurin
           java-version: '17'
-      - uses: android-actions/setup-android@v3
-      - name: Install Android SDK 35
-        run: sdkmanager --install "platforms;android-35" "build-tools;35.0.0"
+      - name: Install Android SDK 35 using preinstalled runner SDK
+        run: |
+          set -euo pipefail
+          echo "ANDROID_HOME=${ANDROID_HOME:-${ANDROID_SDK_ROOT:-/usr/local/lib/android/sdk}}" >> "$GITHUB_ENV"
+          sdkmanager --install "platforms;android-35" "build-tools;35.0.0"
       - uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: '8.10.2'
       - name: Source hygiene and pure Java smoke tests
         run: bash scripts/check-source.sh
-      - name: Build debug APK without publishing
+      - name: Build all five debug APKs without publishing
         working-directory: android
-        run: gradle :${{ inputs.module || 'arcade' }}:assembleDebug --no-daemon --console=plain
+        run: gradle :calendar:assembleDebug :messages:assembleDebug :phone:assembleDebug :alarm:assembleDebug :arcade:assembleDebug --no-daemon --console=plain --continue
       - name: Upload review-only APK
         uses: actions/upload-artifact@v4
         with:
-          name: "${{ inputs.module || 'arcade' }}-debug-review"
-          path: "android/${{ inputs.module || 'arcade' }}/build/outputs/apk/debug/*.apk"
+          name: "five-android-prototype-debug-apks"
+          path: "android/*/build/outputs/apk/debug/*.apk"
           if-no-files-found: error
           retention-days: 3
