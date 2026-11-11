@@ -22,9 +22,9 @@ Die vorherige Minispiel-Sammlung `arcade` sowie die abgebrochenen Projekte Telef
 
 ## Installation und Update
 
-Direkt in F-Droid öffnen (HTTPS-Paketquelle mit festem Repository-Fingerabdruck):
+Direktlink für F-Droid (offizielles Linkformat; Repository-Fingerabdruck enthalten):
 
-[UenkerLabs-Paketquelle in F-Droid hinzufügen](fdroidrepos://uenkerlabs.github.io/UenkerLabs-AppStore/repo?fingerprint=1A25F39551B1615980705043AD003D9F3258A8E96E91539DDB0D89ABFCD3B0F8)
+[UenkerLabs-Paketquelle in F-Droid hinzufügen](https://fdroid.link/#https://uenkerlabs.github.io/UenkerLabs-AppStore/repo?fingerprint=1A25F39551B1615980705043AD003D9F3258A8E96E91539DDB0D89ABFCD3B0F8)
 
 Alternativ unter **F-Droid → Einstellungen → Paketquellen → +** diese vollständige URL eintragen:
 
