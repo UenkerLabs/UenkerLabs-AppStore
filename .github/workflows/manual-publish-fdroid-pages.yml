@@ -1,0 +1,70 @@
+name: Manual F-Droid Pages deployment and verification
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: uenkerlabs-pages-release
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - name: Checkout validation scripts
+        uses: actions/checkout@v4
+      - name: Checkout reviewed public website and signed repository
+        uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+          path: site
+          persist-credentials: false
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Validate local index and signing identity
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f site/.nojekyll
+          test -f site/index.html
+          test -f site/repo/index.html
+          test -f site/repo/index-v1.jar
+          test -f site/repo/entry.jar
+          python3 - <<'PY'
+          import hashlib,json,pathlib
+          repo=pathlib.Path('site/repo')
+          entry=json.loads((repo/'entry.json').read_text())
+          v2=(repo/'index-v2.json').read_bytes()
+          assert len(v2)==entry['index']['size'], 'v2 size mismatch'
+          assert hashlib.sha256(v2).hexdigest()==entry['index']['sha256'], 'v2 digest mismatch'
+          index=json.loads(v2)
+          icon=index['repo']['icon']['en-US']
+          icon_bytes=(repo/icon['name'].lstrip('/')).read_bytes()
+          assert len(icon_bytes)==icon['size'], 'icon size mismatch'
+          assert hashlib.sha256(icon_bytes).hexdigest()==icon['sha256'], 'icon digest mismatch'
+          assert index['repo']['address']=='https://yzue1980.github.io/UenkerLabs-AppStore/repo'
+          print('Local index and icon hashes verified; package count',len(index.get('packages',{})))
+          PY
+          for signed in entry index-v1; do
+            jarsigner -verify -strict -verbose -certs "site/repo/$signed.jar" > "/tmp/$signed-verification.txt"
+            if ! grep -qi 'jar verified' "/tmp/$signed-verification.txt"; then exit 1; fi
+            keytool -printcert -jarfile "site/repo/$signed.jar" | grep -i 'SHA256' | tr -d ': ' | grep -qi '1A25F39551B1615980705043AD003D9F3258A8E96E91539DDB0D89ABFCD3B0F8'
+          done
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+      - name: Upload reviewed, static gh-pages content
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: site
+      - name: Deploy existing signed repository
+        id: deploy
+        uses: actions/deploy-pages@v4
+      - name: Validate public HTTPS and signatures after deployment
+        run: python3 scripts/check-public-fdroid.py
