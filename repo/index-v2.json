@@ -1,20 +1,22 @@
 {
   "repo": {
     "name": {
-      "en-US": "Tangelo OS Apps"
+      "en-US": "UenkerLabs AppStore",
+      "de-DE": "UenkerLabs AppStore"
     },
     "description": {
-      "en-US": "Apps for Tangelo OS that are not in the official F-Droid repository. Source and signing details: https://github.com/YZUe1980/tangelo-apps"
+      "en-US": "Official UenkerLabs AppStore. No APK releases yet.",
+      "de-DE": "Offizielles UenkerLabs-AppStore-Repository. Noch keine freigegebenen APKs."
     },
     "icon": {
       "en-US": {
         "name": "/icons/icon.png",
-        "sha256": "7a17fe2e866272c8616ced3a48ba5a26d1ffe5ee6cfe54eabf1ee3f591adc99b",
-        "size": 61253
+        "sha256": "66e0bfac566633d7f6775123e3869618eff3b99df56d06d338343bf4adcca66d",
+        "size": 981
       }
     },
-    "address": "https://yzue1980.github.io/tangelo-apps/repo",
-    "timestamp": 1793734277612
+    "address": "https://yzue1980.github.io/UenkerLabs-AppStore/repo",
+    "timestamp": 1794374024296
   },
   "packages": {}
 }

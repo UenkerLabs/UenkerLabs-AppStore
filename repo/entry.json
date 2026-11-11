@@ -1,36 +1,10 @@
 {
-  "timestamp": 1793734277612,
+  "timestamp": 1794374024296,
   "version": 30000,
   "index": {
     "name": "/index-v2.json",
-    "sha256": "6745c4a373ba20154d1525002ee7c45585f10003a7730224e2590a91d7fd9f67",
-    "size": 557,
-    "numPackages": 0
+    "sha256": "de1c6cb5630ec74cd86fe9216a20a4d00202e954d877eb74d08207601dbf768e",
+    "size": 611
   },
-  "diffs": {
-    "1793722093580": {
-      "name": "/diff/1793722093580.json",
-      "sha256": "155063859cd8e79333ddc5187b1e1c7ce4c986ad7237a253b29d3635bac6d6e0",
-      "size": 376,
-      "numPackages": 3
-    },
-    "1793722174843": {
-      "name": "/diff/1793722174843.json",
-      "sha256": "aeb32b3ce5633f97eddbf0c2a2e2dce099f33ca6e0b0b7fa7c69721eb930783b",
-      "size": 121,
-      "numPackages": 1
-    },
-    "1793723101939": {
-      "name": "/diff/1793723101939.json",
-      "sha256": "aeb32b3ce5633f97eddbf0c2a2e2dce099f33ca6e0b0b7fa7c69721eb930783b",
-      "size": 121,
-      "numPackages": 1
-    },
-    "1793734249912": {
-      "name": "/diff/1793734249912.json",
-      "sha256": "348b4091b9f02f48ef1fca3659328273ef3857120b2df80f55db599e80a13200",
-      "size": 50,
-      "numPackages": 0
-    }
-  }
+  "diffs": {}
 }
