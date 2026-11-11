@@ -6,8 +6,8 @@ Name: "UenkerLabs Spiele"
 Summary: "Fünf Offline-Minispiele"
 Description: |-
   Fünf kleine Spiele in einer App: Zahlensprung, Merkfeld, Reaktionslabor, Musterfolge und Schiebepuzzle. Frühe Beta ohne Internetberechtigung.
-SourceCode: https://github.com/YZUe1980/UenkerLabs-AppStore/tree/main/android/arcade
-IssueTracker: https://github.com/YZUe1980/UenkerLabs-AppStore/issues
+SourceCode: https://github.com/UenkerLabs/UenkerLabs-AppStore/tree/main/android/arcade
+IssueTracker: https://github.com/UenkerLabs/UenkerLabs-AppStore/issues
 CurrentVersion: 0.1.0-dev
 CurrentVersionCode: 1
 UpdateCheckMode: None
